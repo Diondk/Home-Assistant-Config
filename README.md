@@ -1,7 +1,7 @@
 # Dion de Kleijn's Home Assistant config files
 
 [![GitHub stars](https://img.shields.io/github/stars/diondk/home-assistant-config.svg?style=plasticr)](https://github.com/diondk/home-assistant-config/stargazers)
-[![GitHub last commit](https://img.shields.io/diondk/last-commit/basnijholt/home-assistant-config.svg?style=plasticr)](https://github.com/diondk/home-assistant-config/commits/master)
+[![GitHub last commit](https://img.shields.io/diondk/last-commit/diondk/home-assistant-config.svg?style=plasticr)](https://github.com/diondk/home-assistant-config/commits/master)
 
 I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-theme).
 
@@ -66,34 +66,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         <tr>
             <td>Philips Hue Motion Sensor Outdoor</td>
             <td>2</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th>Vacuum 🧹</th>
-            <th>Units (#)</th>
-            <th>Price per unit (€)</th>
-            <th>Price (€)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Xiaomi Mi Roborock S5</td>
-            <td>1</td>
-            <td>294.31</td>
-            <td>294.31</td>
-        </tr>
-        <tr>
-            <td><i><b>Total</b></i></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>294.31</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
