@@ -1,4 +1,5 @@
-purge_keep_days: 1
+purge_keep_days: 5
+db_url: !secret postgres
 include:
   domains:
     - sensor
