@@ -1,4 +1,0 @@
-  host: !secret nzbget_ip
-  port: !secret nzbget_port
-  username: !secret nzbget_user
-  password: !secret nzbget_password

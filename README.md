@@ -10,9 +10,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
 
 
 ## My devices
-
-<!-- start-table -->
-
 <table>
     <thead>
         <tr>
@@ -30,7 +27,7 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
             <td>2</td>>
         </tr>
         <tr>
-            <td>Hue Tap</td>
+            <td>Philips Hue Tap</td>
             <td>2</td>
         </tr>
         <tr>
@@ -206,7 +203,7 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
     </thead>
     <tbody>
         <tr>
-            <td>iPhone Xs MAaxwith the iOS app</td>
+            <td>iPhone Xs Max with the iOS app</td>
             <td>1</td>
         </tr>
         <tr>
@@ -240,4 +237,3 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
     </tbody>
     </thead>
 </table>
-<!-- end-table -->

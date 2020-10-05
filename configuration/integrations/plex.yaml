@@ -1,8 +1,0 @@
-  host: !secret plex_ip
-  port: 32400
-  token: !secret plex_token
-  ssl: false
-  verify_ssl: false
-  media_player:
-    use_episode_art: true
-    show_all_controls: false

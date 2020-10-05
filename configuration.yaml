@@ -58,15 +58,8 @@ ffmpeg:
 #integrations
 wake_on_lan:
 #includes
-sensor: !include_dir_merge_list configuration/sensor/
-light: !include_dir_merge_list configuration/light/
-group: !include_dir_merge_named configuration/group/
 
-scene: !include_dir_merge_named configuration/scene/
-script: !include_dir_merge_named configuration/scripts/
-switch: !include_dir_merge_list configuration/switches/
-fan: !include_dir_merge_list configuration/fan/
-binary_sensor: !include_dir_merge_list configuration/binary_sensors/
+
 
 
 
@@ -89,8 +82,15 @@ logger: !include includes/logger.yaml
 recorder: !include includes/recorder.yaml
 device_tracker: !include includes/device_trackers.yaml
 
-#managed via UI
-
+#merge list still need to move to 1 file
+sensor: !include_dir_merge_list configuration/sensor/
+light: !include_dir_merge_list configuration/light/
+group: !include_dir_merge_named configuration/group/
+binary_sensor: !include_dir_merge_list configuration/binary_sensors/
+scene: !include_dir_merge_named configuration/scene/
+script: !include_dir_merge_named configuration/scripts/
+switch: !include_dir_merge_list configuration/switches/
+fan: !include_dir_merge_list configuration/fan/
 # Others:
 automation: !include_dir_merge_list automations/
 person: !include includes/persons.yaml
