@@ -151,6 +151,10 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
             <td>1</td>
         </tr>
         <tr>
+            <td>Philips Hue Playbar</td>
+            <td>3</td>
+        </tr>
+        <tr>
             <td>Philips Hue LED Aurella 30x30/td>
             <td>1</td>
         </tr>
@@ -223,7 +227,7 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
     </thead>
     <tbody>
         <tr>
-            <td>Creality Ender 3 - 3D Printer</td>
+            <td>Creality Ender 3 PRO - 3D Printer</td>
             <td>1</td>
         </tr>
         <tr>

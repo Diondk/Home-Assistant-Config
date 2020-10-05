@@ -83,18 +83,20 @@ recorder: !include includes/recorder.yaml
 device_tracker: !include includes/device_trackers.yaml
 
 #merge list still need to move to 1 file
-sensor: !include_dir_merge_list configuration/sensor/
-light: !include_dir_merge_list configuration/light/
-group: !include_dir_merge_named configuration/group/
-binary_sensor: !include_dir_merge_list configuration/binary_sensors/
-scene: !include_dir_merge_named configuration/scene/
-script: !include_dir_merge_named configuration/scripts/
-switch: !include_dir_merge_list configuration/switches/
-fan: !include_dir_merge_list configuration/fan/
+sensor: !include_dir_merge_list includes/sensor/
+light: !include_dir_merge_list includes/light/
+group: !include_dir_merge_named includes/group/
+#binary_sensor: !include_dir_merge_list includes/binary_sensors/
+scene: !include_dir_merge_named includes/scene/
+script: !include_dir_merge_named includes/scripts/
+switch: !include_dir_merge_list includes/switches/
+
 # Others:
 automation: !include_dir_merge_list automations/
+binary_sensor: !include includes/binary_sensors.yaml
 person: !include includes/persons.yaml
 homekit: !include includes/homekit.yaml
+fan: !include includes/fan.yaml
 discovery: !include includes/discovery.yaml
 proximity: !include includes/proximity.yaml
 notify: !include includes/notify.yaml

@@ -75,20 +75,17 @@ cleaned_today:
 bedroom_lights_automatically_turned_on:
   name: Will automatically turn off
   icon: mdi:ceiling-light
-  initial: "off"
+  initial: off
 automatic_bedroom_lights:
   name: Automatic bedroom lights
   icon: mdi:lamp
 automatic_temperature:
   name: Automatic temperature
   icon: mdi:thermometer
-work_hour_notification_sent:
-  name: You've worked enough notification sent
-  icon: mdi:lamp
 alarm_clock:
   name: Alarm clock is on
   icon: mdi:alarm
 wake_up_light:
   name: Start wake up light
-  initial: "off"
+  initial: off
   icon: mdi:weather-sunset-up

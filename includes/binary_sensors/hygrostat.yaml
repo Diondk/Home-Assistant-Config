@@ -1,6 +1,0 @@
-- platform: generic_hygrostat
-  name: badkamer Hygrostat
-  sensor: sensor.douche_2
-  delta_trigger: 3
-  target_offset: 3 
-  max_on_time: 7200 
