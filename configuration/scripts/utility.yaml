@@ -5,6 +5,9 @@ utility_notification:
     name:
       description: name
       example: washing_machine
+      emojis:
+        description: emojis
+        example: "👚👕"      
   variables:
     switch: "{{ 'switch.{}'.format(name) }}"
     binary_sensor: "{{ 'binary_sensor.{}'.format(name) }}"

@@ -1,35 +1,35 @@
 # dryer off notification
-- id: '1547841168697'
-  alias: Notify - dryer off
-  trigger:
-  - entity_id: binary_sensor.dryer_on
-    for: 0:03:00
-    from: 'on'
-    platform: state
-    to: 'off'
-  action:
-  - data:
-      message: De droger is klaar!
-    service: notify.mobile_app_lievemandie
-  - data:
-      message: De droger is klaar!
-    service: notify.mobile_app_iphone
+# - id: '1547841168697'
+#   alias: Notify - dryer off
+#   trigger:
+#   - entity_id: binary_sensor.dryer_on
+#     for: 0:03:00
+#     from: 'on'
+#     platform: state
+#     to: 'off'
+#   action:
+#   - data:
+#       message: De droger is klaar!
+#     service: notify.mobile_app_lievemandie
+#   - data:
+#       message: De droger is klaar!
+#     service: notify.mobile_app_iphone
 # washer off notification
-- id: '1547884819761'
-  alias: Notify - Wasmachine klaar
-  trigger:
-  - entity_id: binary_sensor.washer_on
-    for: 0:03:00
-    from: 'on'
-    platform: state
-    to: 'off'
-  action:
-  - data:
-      message: De wasmachine is klaar!
-    service: notify.mobile_app_lievemandie
-  - data:
-      message: De wasmachine is klaar!
-    service: notify.mobile_app_iphone
+# - id: '1547884819761'
+#   alias: Notify - Wasmachine klaar
+#   trigger:
+#   - entity_id: binary_sensor.washer_on
+#     for: 0:03:00
+#     from: 'on'
+#     platform: state
+#     to: 'off'
+#   action:
+#   - data:
+#       message: De wasmachine is klaar!
+#     service: notify.mobile_app_lievemandie
+#   - data:
+#       message: De wasmachine is klaar!
+#     service: notify.mobile_app_iphone
 # Achter deur open notification
 - alias: Notify - Achterduer open
   trigger:
