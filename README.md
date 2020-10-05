@@ -40,8 +40,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
         </tr>
     </tbody>
     <thead>
@@ -70,8 +68,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
         </tr>
     </tbody>
     <thead>
@@ -86,7 +82,7 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
             <td>1</td>
         </tr>
         <tr>
-            <td>Philips 53PFS5503/12</td>
+            <td>Philips 43PFS5503/12</td>
             <td>1</td>
         </tr>
         <tr>
@@ -102,8 +98,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
             <td>1</td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
@@ -166,10 +160,16 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         <tr>
             <td>Philips Hue Still White  Ambiance</td>
             <td>1</td>
-        </tr>   
+        </tr> 
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>Philips Hue Outdoor Discover Floodlight</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Philips Hue Outdoor Tuar</td>
+            <td>1</td>
+        </tr>             
+        <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
@@ -196,8 +196,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
         </tr>
     </tbody>
     <thead>
@@ -218,8 +216,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
         </tr>
     </tbody>
     <thead>
@@ -238,8 +234,6 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
             <td>1</td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
