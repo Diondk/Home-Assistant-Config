@@ -1,7 +1,7 @@
 # Dion de Kleijn's Home Assistant config files
 
 [![GitHub stars](https://img.shields.io/github/stars/diondk/home-assistant-config.svg?style=plasticr)](https://github.com/diondk/home-assistant-config/stargazers)
-[![GitHub last commit](https://img.shields.io/diondk/last-commit/diondk/home-assistant-config.svg?style=plasticr)](https://github.com/diondk/home-assistant-config/commits/master)
+[![GitHub last commit](https://img.shields.io/github/last-commit/diondk/home-assistant-config.svg?style=plasticr)](https://github.com/diondk/home-assistant-config/commits/master)
 
 I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-theme).
 
