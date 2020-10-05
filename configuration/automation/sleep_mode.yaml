@@ -1,0 +1,61 @@
+#-
+#      _                                        _
+#  ___| | ___  ___ _ __     _ __ ___   ___   __| | ___
+# / __| |/ _ \/ _ \ '_ \   | '_ ` _ \ / _ \ / _` |/ _ \
+# \__ \ |  __/  __/ |_) |  | | | | | | (_) | (_| |  __/
+# |___/_|\___|\___| .__/___|_| |_| |_|\___/ \__,_|\___|
+#                 |_| |_____|
+#
+- alias: "Night mode: automatically turn off at 7AM"
+  trigger:
+    - platform: time
+      at: "07:00"
+#    - platform: state
+#      entity_id: input_boolean.alarm_clock
+#      from: "on"
+#      to: "off"
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.sleep_mode
+      data:
+        option: "off"
+    - service: switch.turn_off
+      entity_id: switch.camera_plug        
+    - service: notify.mobile_app_iphone
+      data:
+        title: "Night mode"
+        message: "Automatically switched from 'total' to 'off' for sleeping mode!"
+      
+- alias: "Night mode: set low temperature when sleep mode turns on"
+  trigger:
+    platform: state
+    entity_id: input_select.sleep_mode
+    from: "total"
+  action:
+    - service: script.set_low_temperature
+    - service: script.turn_water_off
+    - service: switch.turn_on
+      entity_id: switch.camera_plug      
+    
+- alias: "Night mode: go from half to total sleeping mode"
+  description: >
+    When it is half sleeping mode and there is no activity in
+    the house for more than an hour go to total sleeping mode.
+  trigger:
+    platform: state
+    entity_id: binary_sensor.activity_outside_bedroom
+    to: "off"
+    for: "01:00:00"
+  condition:
+    condition: state
+    entity_id: input_select.sleep_mode
+    state: half
+  action:
+    - service: input_select.select_option
+      entity_id: input_select.sleep_mode
+      data:
+        option: "total"
+    - service: notify.mobile_app_iphone
+      data:
+        title: "Night mode"
+        message: "Automatically switched from 'half' to 'total' sleeping mode!"

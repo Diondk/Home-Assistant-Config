@@ -1,0 +1,58 @@
+#
+#                           _ _
+#  ___  ___  ___ _   _ _ __(_) |_ _   _
+# / __|/ _ \/ __| | | | '__| | __| | | |
+# \__ \  __/ (__| |_| | |  | | |_| |_| |
+# |___/\___|\___|\__,_|_|  |_|\__|\__, |
+#                                 |___/
+#
+- alias: "Security: no one is home but high power usage"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dsmr_reading_electricity_currently_delivered
+    above: 1
+    for: "00:30:00"
+  condition: 
+    condition: state
+    entity_id: binary_sensor.no_one_home
+    state: "on"
+  action: 
+    service: notify.all_iphones
+    data:
+      title: "Security"
+      message: >
+        No one is home and we are using a lot of energy
+        ({{ states('sensor.power_consumption') }} kW now)! ⚡️   
+- alias: "Security: frontdoor has been open for more than 5 minutes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_voordeur
+    from: "off"
+    to: "on"
+    for: "00:05:00"
+  condition:
+    condition: state
+    entity_id: input_boolean.homemode_guest
+    state: "off"
+  action:
+    service: notify.all_iphones
+    data:
+      title: "Security"
+      message: "The frontdoor has been open for more than 5 minutes."
+
+- alias: "Security: backdoor has been open for more than 5 minutes"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.keukendeur
+    from: "off"
+    to: "on"
+    for: "00:05:00"
+  condition:
+    condition: state
+    entity_id: input_boolean.homemode_guest
+    state: "off"
+  action:
+    service: notify.all_iphones
+    data:
+      title: "Security"
+      message: "The backdoor has been open for more than 5 minutes."      

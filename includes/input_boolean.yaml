@@ -1,0 +1,94 @@
+# homemodes
+homemode_home:
+  name: Home mode
+  icon: fas:house
+homemode_away:
+  name: Away mode
+  icon: fas:house-leave
+homemode_night:
+  name: Sleep mode
+  icon: fas:moon-stars
+homemode_vacation:
+  name: Vacation Mode
+  icon: fas:house-leave
+homemode_goodmorning:
+  name: Good morning Mode
+  icon: fas:sunrise
+homemode_bedtime:
+  name: Bed Time
+  icon: fas:bed
+homemode_luke:
+  name: Luke Slaapt
+  icon: fas:baby
+homemode_guest:
+  name: Guest Mode
+  icon: fas:user-friends
+homemode_douche:
+  name: Douche
+  icon: fas:shower
+#cover modus
+cover_auto:
+  name: Automatische rolluiken
+  icon: fas:blinds
+cover_handmatig_open:
+  name: rolluiken handmatig geopend
+  icon: fas:blinds-raised
+cover_gesloten_zon:
+  name: rolluiken gesloten door de zon
+  icon: fas:blinds
+#media modes
+media_netflix:
+  name: Netflix & Chill
+  initial: off
+media_youtube:
+  name: Youtube
+  initial: off
+media_plex:
+  name: Plex
+  initial: off
+media_prime:
+  name: Prime
+  initial: off
+media_spotify:
+  name: Spotify
+  initial: off
+media_xbox:
+  name: Xbox
+  initial: off
+media_tv_kijken:
+  name: TV Kijken
+  initial: off
+3d_printer:
+  name: ender status
+  initial: on  
+#fan status
+woonkamer_fan_state:
+lukes_fan_state:
+zolder_fan_state:
+# Light Popup Options
+light_options:
+  initial: off
+  
+cleaned_today:
+  name: Vacuum cleaned today
+  icon: mdi:broom
+bedroom_lights_automatically_turned_on:
+  name: Will automatically turn off
+  icon: mdi:ceiling-light
+  initial: "off"
+automatic_bedroom_lights:
+  name: Automatic bedroom lights
+  icon: mdi:lamp
+automatic_temperature:
+  name: Automatic temperature
+  icon: mdi:thermometer
+work_hour_notification_sent:
+  name: You've worked enough notification sent
+  icon: mdi:lamp
+alarm_clock:
+  name: Alarm clock is on
+  icon: mdi:alarm
+wake_up_light:
+  name: Start wake up light
+  initial: "off"
+  icon: mdi:weather-sunset-up

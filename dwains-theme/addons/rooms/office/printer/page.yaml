@@ -1,0 +1,69 @@
+## Created by Jeroen Klompen
+## Room add-on: Printer
+## Version: 1.0.0
+
+- type: custom:dwains-flexbox-card
+  items_classes: 'col-xs-12 col-sm-6 col-sm-6'
+  #padding: true
+  cards:
+    - type: entities
+      style: |
+        ha-card {
+          border-radius: 5px;
+          background-color: var(--dwains-theme-primary);
+        }
+      entities:
+        - entity: sensor.hp_printer_status
+          name: Status
+        - entity: sensor.hp_printer_printer
+          icon: mdi:printer
+          name: "Totaal aantal pagina's afgedrukt"
+        - entity: sensor.hp_printer_scanner
+          icon: mdi:printer
+          name: "Totaal aantal pagina's gescand"
+
+    - type: 'custom:bar-card'
+      style: |
+        ha-card {
+          border-radius: 5px;
+          background-color: var(--dwains-theme-primary);
+        }
+        bar-card-value {
+          color: white;
+          margin-bottom: 45%;
+        }
+        bar-card-iconbar {
+          color: white;
+          margin-top: 55%;
+        }
+        bar-card-title {
+          color: var(--name-color-on);
+          text-transform: capitalize;
+        }
+      direction: up
+      stack: horizontal
+      positions:
+        icon: inside
+        title: outside
+        value: inside
+      height: 200px
+      target: 10
+      unit_of_measurement: '%'
+      width: 100%
+      entities:
+        - entity: sensor.hp_printer_inkcartridge_black
+          name: Zwart
+          color: Black
+          icon: mdi:water
+        - entity: sensor.hp_printer_inkcartridge_cyanmagentayellow
+          name: Kleur
+          color: MediumTurquoise
+          icon: mdi:water
+        - entity: sensor.hp_printer_inkcartridge_cyanmagentayellow
+          name: Magenta
+          color: MediumOrchid
+          icon: mdi:water
+        - entity: sensor.hp_printer_inkcartridge_cyanmagentayellow
+          name: Geel
+          color: Gold
+          icon: mdi:water

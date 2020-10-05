@@ -1,0 +1,32 @@
+set_low_temperature:
+  alias: Set low temperature
+  sequence:
+    - service: climate.set_temperature
+      entity_id: climate.heating
+      data:
+        temperature: >
+          {{ states("input_number.temperature_low") }}
+set_high_temperature:
+  alias: Set high temperature
+  sequence:
+    - service: climate.set_temperature
+      entity_id: climate.heating
+      data:
+        temperature: >
+          {{ states("input_number.temperature_high") }}   
+          
+set_water_temperature:
+  alias: Set water temperature
+  sequence:
+    - service: water_heater.set_temperature
+      entity_id: water_heater.water
+      data:
+        temperature: >
+          {{ states("input_number.water_temperature") }}
+turn_water_off:
+  alias: Turn Water Off
+  sequence:
+    - service: water_heater.set_operation_mode
+      data:
+        entity_id: water_heater.water
+        operation_mode: 'off' 

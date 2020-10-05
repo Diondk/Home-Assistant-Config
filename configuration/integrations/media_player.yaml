@@ -1,0 +1,9 @@
+#  - platform: philips_android_tv
+#    name: TV
+#    host: !secret ip_tv_woonkamer
+#    username: !secret tv_username
+#    password: !secret tv_password
+#    mac: !secret tv_mac
+#  - platform: xboxone
+#    device: FD00E2F123DFA081
+#    name: Woonkamer Xbox One

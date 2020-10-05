@@ -1,0 +1,81 @@
+- platform: template
+  sensors:
+    homemode:
+      value_template: >
+        {% if is_state("input_boolean.homemode_home", "on") %} Home {% else %} Away {% endif %}
+      friendly_name: 'Home mode sensor'
+- platform: template
+  sensors:
+    tv_status:
+      value_template: >-
+        {% if is_state_attr('media_player.tv', 'media_title', 'Netflix') %} 
+        Netflix
+        {% elif is_state_attr('media_player.tv', 'media_title', 'Prime Video') %} 
+        Prime
+        {% elif is_state_attr('media_player.tv', 'media_title', 'Spotify') %} 
+        Spotify
+        {% elif is_state_attr('media_player.tv', 'media_title', 'YouTube') %} 
+        Youtube
+        {% elif is_state_attr('media_player.tv', 'media_title', 'Plex') %} 
+        Plex   
+        {% elif is_state('media_player.woonkamer_room_xbox_one', 'on') %}
+        Xbox 
+        {% elif is_state ('media_player.tv','mediatitle', 'N/A - N/A') %}
+        TV
+        {% elif is_state_attr('media_player.tv', 'off') %} 
+        off
+        {% else %} off {% endif %}
+      friendly_name: 'TV Status'
+- platform: template
+  sensors:
+    woonkamer_fan_speed:
+      value_template: >
+          {% if states.fan.woonkamer_fan.state == 'Off' -%}off
+          {% else %}
+            {{ state_attr("fan.woonkamer_fan", "speed") }}
+          {% endif %}
+- platform: template
+  sensors:
+    lukes_fan_speed:
+      value_template: >
+          {% if states.fan.lukes_fan.state == 'Off' -%}off
+          {% else %}
+            {{ state_attr("fan.lukes_fan", "speed") }}
+          {% endif %}
+- platform: template
+  sensors:
+    zolder_fan_speed:
+      value_template: >
+          {% if states.fan.zolder_fan.state == 'Off' -%}off
+          {% else %}
+            {{ state_attr("fan.zolder_fan", "speed") }}
+          {% endif %}
+- platform: template
+  sensors: 
+    zonnepanelen_kw:
+      unit_of_measurement: 'kW'
+      value_template: "{{ states('sensor.growatt_total_energy_today')}}"
+- platform: template
+  sensors:
+    heel_temperature:
+      friendly_name: "buiten temp"
+      unit_of_measurement: 'degrees'
+      value_template: "{{ state_attr('weather.heel', 'temperature') }}"   
+    washing_machine:
+      friendly_name: "washing_machine"
+      unit_of_measurement: 'kwh'
+      value_template: "{{ states('sensor.wasmachine_verbruik_vandaag') }}"   
+    dryer_machine:
+      friendly_name: "dryer_machine"
+      unit_of_measurement: 'kwh'
+      value_template: "{{ states('sensor.droger_verbruik_vandaag') }}"   
+    nearest_iphone_notify:
+      friendly_name: Nearest iPhone's notify service
+      value_template: >
+        {% if is_state("person.dion", "home") and is_state("person.mandie", "home") %}
+          notify.all_iphones
+        {% elif is_state_attr("proximity.home", "nearest", "prive") %}
+          notify.mobile_app_prive
+        {% else %}
+          notify.mobile_app_lievemandie
+        {% endif %}

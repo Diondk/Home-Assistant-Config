@@ -1,0 +1,21 @@
+  woonkamer_fan_speed:
+    options:
+      - 'Off'
+      - 'Min'
+      - 'Med'
+      - 'Max'
+  lukes_fan_speed:
+    options:
+      - 'Off'
+      - 'Min'
+      - 'Med'
+      - 'Max'
+  zolder_fan_speed:
+    options:
+      - 'Min'
+      - 'Med'
+      - 'Max'
+
+
+      
+      

@@ -1,0 +1,111 @@
+
+homeassistant:
+  name: Death Star
+  latitude: !secret homelocation_lat
+  longitude: !secret homelocation_long
+  elevation: 0
+  unit_system: metric
+  time_zone: Europe/Amsterdam
+  customize: !include customize.yaml
+  packages: !include_dir_named packages/
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.1.0/24
+      trusted_users: 
+        192.168.1.74: 066c635573a94b88b5582c01b04ce60d
+      allow_bypass_login: true
+        
+default_config:
+# HTTP #
+http:
+#  base_url: !secret base_url
+  use_x_forwarded_for: true
+  trusted_proxies: 127.0.0.1
+  #ssl_certificate: !secret ssl_certificate
+  #ssl_key: !secret ssl_key
+#enables a map showing the location of tracked devices
+map:
+#browser_mod:
+python_script:
+#alexa
+api:
+
+alexa:
+  smart_home:
+    filter:
+      include_domains:
+        - switch
+        - light
+      exclude_entities:
+        - switch.outside
+    entity_config:
+      switch.comfo_fan_0:
+        name: "House fan mid"
+        description: "Comfo fan mid"
+      switch.comfo_fan_1:
+        name: "House fan high"
+        description: "Comfo fan high"
+      light.keuken:
+        name: "Kitchen Light"
+        description: "Kitchen Light"
+      group.woonkamer_verlichting:
+        name: "Livingroom light"
+        description: "Livingroom Light"
+
+#systemhealth
+mobile_app:
+system_health:
+ffmpeg:
+#integrations
+wake_on_lan:
+#includes
+sensor: !include_dir_merge_list configuration/sensor/
+light: !include_dir_merge_list configuration/light/
+group: !include_dir_merge_named configuration/group/
+automation: !include_dir_merge_list  configuration/automation/
+scene: !include_dir_merge_named configuration/scene/
+script: !include_dir_merge_named configuration/scripts/
+switch: !include_dir_merge_list configuration/switches/
+fan: !include_dir_merge_list configuration/fan/
+binary_sensor: !include_dir_merge_list configuration/binary_sensors/
+
+
+
+#    _   _                  _____             __ _       
+#   | \ | |                / ____|           / _(_)      
+#   |  \| | _____      __ | |     ___  _ __ | |_ _  __ _ 
+#   | . ` |/ _ \ \ /\ / / | |    / _ \| '_ \|  _| |/ _` |
+#   | |\  |  __/\ V  V /  | |___| (_) | | | | | | | (_| |
+#   |_| \_|\___| \_/\_/    \_____\___/|_| |_|_| |_|\__, |
+#                                                   __/ |
+#                                                  |___/ 
+#inputs
+input_datetime: !include includes/input_datetimes.yaml
+input_number: !include includes/input_numbers.yaml
+input_boolean: !include includes/input_boolean.yaml
+input_text: !include includes/input_text.yaml
+input_select: !include includes/input_select.yaml
+# Logging and history
+logger: !include includes/logger.yaml
+recorder: !include includes/recorder.yaml
+device_tracker: !include includes/device_trackers.yaml
+
+#managed via UI
+
+# Others:
+person: !include includes/persons.yaml
+homekit: !include includes/homekit.yaml
+discovery: !include includes/discovery.yaml
+proximity: !include includes/proximity.yaml
+notify: !include includes/notify.yaml
+camera: !include includes/camera.yaml
+ios: !include includes/ios.yaml
+shell_command: !include includes/shell_commands.yaml
+calendar: !include includes/calander.yaml
+octoprint: !include includes/octoprint.yaml
+weather: !include includes/weather.yaml
+speedtestdotnet: !include includes/speedtestdotnet.yaml
+nzbget: !include includes/nzbget.yaml
+tado: !include includes/tado.yaml

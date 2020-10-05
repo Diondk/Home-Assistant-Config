@@ -1,0 +1,142 @@
+#both gone, disable ambilight, turn on the camera.
+- id: '1562018015940'
+  alias: Homemode - away
+  trigger:
+  - entity_id: group.family_status
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.homemode_guest
+    state: 'off'
+  - condition: state
+    entity_id: group.family_status
+    state: not_home
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.homemode_away
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.homemode_home
+  - service: switch.turn_on
+    entity_id: switch.camera_plug
+  - service: switch.turn_off
+    entity_id: switch.philips_ambilight
+#both gone, close rollers
+- alias: COVER - Away automation
+  trigger: 
+  - entity_id: group.family_status
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: input_boolean.homemode_guest
+    state: 'off'
+  - condition: state
+    entity_id: binary_sensor.door_keuken
+    state: 'off'
+  action:
+  - service: cover.close_cover   
+    entity_id: cover.eetkamerraam
+  - service: cover.close_cover   
+    entity_id: cover.keukendeur
+#one of us is at home, disable camera turn on ambilight on the tv
+- id: '1562018102546'
+  alias: Homemode - Home
+  trigger:
+  - entity_id: group.family_status
+    from: not_home
+    platform: state
+    to: home
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.homemode_away
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.homemode_home
+  - service: switch.turn_off
+    entity_id: switch.camera_plug
+  - service: switch.turn_on
+    entity_id: switch.philips_ambilight
+  - service: shell_command.cast_ha_woonkamer
+#Luke sleeping enable the automation when boolean is turned on.
+- id: '1561884137840'
+  alias: Homemode - Luke slaapt
+  trigger:
+  - entity_id: input_boolean.homemode_luke
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: input_boolean.homemode_luke
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - service: automation.toggle
+    entity_id: automation.notify_lukes_room_movement
+#homemode night 
+# - alias: Homemode - night
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.in_bed_bayesian
+#       to: 'on'
+#   action:
+#     - service_template: >
+#         {% if is_state('binary_sensor.in_bed_bayesian', 'on') %}
+#           input_boolean.turn_on
+#         {% else %}
+#           input_boolean.turn_off
+#         {% endif %}
+#       entity_id: input_boolean.homemode_night
+#     - service_template: >
+#         {% if is_state('binary_sensor.in_bed_bayesian', 'on') %}
+#           switch.turn_on
+#         {% else %}
+#           switch.turn_off
+#         {% endif %}
+#       entity_id: switch.camera_plug
+#homemode - douche
+- alias: Homemode - Douche
+  trigger: 
+    - entity_id: binary_sensor.badkamer_hygrostat
+      platform: state
+      to: 'on'
+    - entity_id: binary_sensor.badkamer_hygrostat
+      platform: state
+      to: 'off'
+  action:
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state('binary_sensor.badkamer_hygrostat', 'on') %}
+            script.zolder_fan_max
+          {% else %}
+            script.zolder_fan_med
+          {% endif %}
+- alias: Homemode - Afzuigkap fan aan
+  trigger: 
+    - entity_id: sensor.afzuigkap_huidig_verbruik
+      platform: numeric_state
+      above: 30
+  action:
+    - service: script.turn_on
+      entity_id: script.zolder_fan_max
+- alias: Homemode - Afzuigkap fan uit
+  trigger: 
+    - entity_id: sensor.afzuigkap_huidig_verbruik
+      platform: numeric_state
+      below: 30
+  action:
+    - service: script.turn_on
+      entity_id: script.zolder_fan_med      
+      
+- alias: Homemode - Mandie location update
+  trigger:
+  - entity_id: person.mandie
+    from: home
+    platform: state
+    to: not_home  
+  action:
+  - data:
+      message: request_location_update
+    service: notify.mobile_app_lievemandie

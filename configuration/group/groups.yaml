@@ -1,0 +1,19 @@
+family_status:
+  name: Family Status
+  entities:
+    - person.dion
+    - person.mandie
+woonkamer_verlichting:
+  name: Woonkamer Verlichting
+  entities:
+    - light.woonkamer_staande_hanglamp
+    - light.tv_play_1
+    - light.tv_play_2
+    - light.tv_play_3
+    - light.woonkamer_color_floor
+    - light.hue_go_woonkamer
+kantoor_ver:
+  name: Verlichting Kantoor
+  entities: 
+    - light.kantoor
+    - light.lightstrip_kantoor

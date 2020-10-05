@@ -1,0 +1,80 @@
+
+- type: vertical-stack
+  cards:
+    - type: custom:dwains-flexbox-card
+      padding: true
+      items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+      cards:
+        - type: horizontal-stack
+          cards:
+          - type: custom:button-card
+            style: |
+                ha-card {
+                  background: var(--dwains-theme-primary);
+                  border-radius: 10px;
+                  box-shadow: 10px;
+                  font-weight: bold;
+                  opacity: 0.8;
+                }
+            icon: mdi:fan
+            name: 'Low'
+            tap_action:
+              action: call-service
+              service: script.zolder_fan_min
+            state:
+              - operator: template
+                value: >
+                    [[[ if (states['sensor.zolder_fan_speed'].state == 'Min') return 'on' ; ]]]
+                spin: true
+            styles:
+              icon:
+                - color: >
+                    [[[ if (states['sensor.zolder_fan_speed'].state == 'Min') return '#299ec2'; return 'grey' ; ]]]
+
+          - type: custom:button-card
+            style: |
+                ha-card {
+                  background: var(--dwains-theme-primary);
+                  border-radius: 10px;
+                  box-shadow: 10px;
+                  font-weight: bold;
+                  opacity: 0.8;
+                }
+            icon: mdi:fan
+            name: 'Med'
+            tap_action:
+              action: call-service
+              service: script.zolder_fan_med
+            state:
+              - operator: template
+                value: >
+                    [[[ if (states['sensor.zolder_fan_speed'].state == 'Med') return 'on' ; ]]]
+                spin: true
+            styles:
+              icon:
+                - color: >
+                    [[[ if (states['sensor.zolder_fan_speed'].state == 'Med') return '#299ec2'; return 'grey' ; ]]]
+
+          - type: custom:button-card
+            style: |
+                ha-card {
+                  background: var(--dwains-theme-primary);
+                  border-radius: 10px;
+                  box-shadow: 10px;
+                  font-weight: bold;
+                  opacity: 0.8;
+                }
+            icon: mdi:fan
+            name: 'High'
+            tap_action:
+              action: call-service
+              service: script.zolder_fan_max
+            state:
+              - operator: template
+                value: >
+                    [[[ if (states['sensor.zolder_fan_speed'].state == 'Max') return 'on' ; ]]]
+                spin: true
+            styles:
+              icon:
+                - color: >
+                    [[[ if (states['sensor.zolder_fan_speed'].state == 'Max') return '#299ec2'; return 'grey' ; ]]]

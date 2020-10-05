@@ -1,0 +1,23 @@
+sleep_mode:
+  options:
+    - total # everyone is sleeping
+    - half # one person is awake and one person is sleeping
+    - "off" # everyone is awake
+  icon: mdi:bed-king
+woonkamer_fan_speed:
+  options:
+    - 'Off'
+    - 'Min'
+    - 'Med'
+    - 'Max'
+lukes_fan_speed:
+  options:
+    - 'Off'
+    - 'Min'
+    - 'Med'
+    - 'Max'
+zolder_fan_speed:
+  options:
+    - 'Min'
+    - 'Med'
+    - 'Max'

@@ -1,0 +1,57 @@
+#
+#  _                          _    _ _
+# | |__   ___  _ __ ___   ___| | _(_) |_
+# | '_ \ / _ \| '_ ` _ \ / _ \ |/ / | __|
+# | | | | (_) | | | | | |  __/   <| | |_
+# |_| |_|\___/|_| |_| |_|\___|_|\_\_|\__|
+#
+#
+filter:
+  exclude_domains:
+    - automation
+    - binary_sensor
+    - device_tracker
+    - input_boolean
+    - light
+    - media_player
+    - persistent_notification
+    - person
+    - script
+    - sensor
+    - sun
+    - switch
+    - zone
+  include_entities:
+    - light.woonkamer
+    - light.slaapkamer
+    - light.luke_nachtlampje
+    - light.luke_ventilator
+    - light.dion_nachtkastje
+    - light.mandie_nachtkastje
+    - light.overloop_lamp
+    - light.gang_lamp
+    - light.toilet
+    - light.kantoor_group
+    - media_player.woonkamer
+    - media_player.kantoor
+    - media_player.55pus8503_12
+entity_config:
+  media_player.woonkamer:
+    name: Living room speakers
+    feature_list:
+      - feature: on_off
+      - feature: toggle_mute
+  media_player.Kantoor:
+    name: Kantoor speakers
+    feature_list:
+      - feature: on_off
+      - feature: toggle_mute
+  media_player.55pus8503_12:
+    name: TV
+    feature_list:
+      - feature: on_off
+      - feature: play_pause
+      - feature: play_stop
+      - feature: toggle_mute
+  input_boolean.start_the_music:
+    name: Start Spotify

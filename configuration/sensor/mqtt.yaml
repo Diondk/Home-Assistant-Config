@@ -1,0 +1,66 @@
+- platform: mqtt
+  name: TV Verbruik Gisteren
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff-tv/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+- platform: mqtt
+  name: TV Verbruik Vandaag
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff-tv/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+- platform: mqtt
+  name: TV Huidig Verbruik
+  unit_of_measurement: "Amps"
+  state_topic: "tele/sonoff-tv/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+- platform: mqtt
+  name: TV Power
+  unit_of_measurement: "Watts"
+  state_topic: "tele/sonoff-tv/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+
+- platform: mqtt
+  name: Droger Verbruik Gisteren
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff-dr/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+- platform: mqtt
+  name: Droger Verbruik Vandaag
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff-dr/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+
+- platform: mqtt
+  name: Wasmachine Verbruik Gisteren
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff-wm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Yesterday }}"
+- platform: mqtt
+  name: Wasmachine Verbruik Vandaag
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff-wm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Today }}"
+
+- platform: mqtt
+  name: Droger Huidig Verbruik
+  unit_of_measurement: "Amps"
+  state_topic: "tele/sonoff-dr/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  
+- platform: mqtt
+  name: Wasmachine Huidig Verbruik
+  unit_of_measurement: "Amps"
+  state_topic: "tele/sonoff-wm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Current }}"
+  
+- platform: mqtt
+  name: Wasmachine Power
+  unit_of_measurement: "Watts"
+  state_topic: "tele/sonoff-wm/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"
+  
+- platform: mqtt
+  name: Droger Power
+  unit_of_measurement: "Watts"
+  state_topic: "tele/sonoff-dr/SENSOR"
+  value_template: "{{ value_json['ENERGY'].Power }}"

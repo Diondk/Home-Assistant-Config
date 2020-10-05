@@ -1,0 +1,170 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/rooms.html
+
+ rooms:
+   - name: Woonkamer
+     icon: fas:couch
+     light: group.woonkamer_verlichting
+     motion: binary_sensor.woonkamer_sensor_motion
+     temperature: sensor.woonkamer_sensor_temperature
+     media_player: media_player.55pus8503_12
+     climate: climate.heating
+     cover: cover.eetkamerraam
+     addons:
+       - name: Sonos
+         icon: fal:speaker
+         path: 'dwains-theme/addons/rooms/woonkamer/sonos/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/woonkamer/sonos/button.yaml'
+         data:
+           platform: sonos
+           speakers:
+             - entity: media_player.woonkamer
+               name: Woonkamer
+             - entity: media_player.kantoor
+               name: Kantoor
+           buttons:
+             - name: Radio 538
+               type: source
+               id: Radio 538
+             - name: Qmusic
+               type: source
+               id: Qmusic
+             - name: SLAM!
+               icon: mdi:television
+               type: source
+               id: SLAM!
+       - name: Fan Control
+         icon: fas:fan
+         path: 'dwains-theme/addons/rooms/woonkamer/fan/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/woonkamer/fan/button.yaml'
+         data:
+           entity: sensor.woonkamer_fan_speed
+   - name: Gang
+     icon: fas:key
+     light: light.gang_lamp
+     door: binary_sensor.door_voordeur
+     temperature: sensor.wc_sensor_temperature
+     motion: binary_sensor.gang_sensor_motion
+   - name: WC
+     icon: fas:toilet
+     light: light.wc_spot
+     temperature: sensor.wc_sensor_temperature
+     motion: binary_sensor.wc_sensor_motion
+   - name: Keuken
+     icon: fas:refrigerator
+     door: binary_sensor.door_keuken
+     light: light.keuken
+     motion: binary_sensor.keuken_sensor_motion
+     cover: cover.keukendeur
+     addons:
+       - name: Fan Control
+         icon: fas:fan
+         path: 'dwains-theme/addons/rooms/keuken/fan/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/keuken/fan/button.yaml'
+         data:
+           entity: sensor.zolder_fan_speed  
+     temperature: sensor.keuken_sensor_temperature
+   - name: Overloop
+     icon: fas:door-open
+     light: light.overloop_lamp
+     temperature: sensor.overloop_sensor_temperature
+     motion: binary_sensor.overloop_sensor_motion
+   - name: Slaapkamer
+     icon: fas:bed
+     light: light.slaapkamer
+     motion: binary_sensor.slaapkamer_sensor_motion
+     temperature: sensor.slaapkamer_sensor_temperature
+   - name: Luke's Kamer
+     icon: fas:baby
+     light: light.luke_ventilator
+     motion: binary_sensor.lukes_kamer_sensor_motion
+     temperature: sensor.lukes_kamer_sensor_temperature
+     addons:
+       - name: Fan Control
+         icon: fas:fan
+         path: 'dwains-theme/addons/rooms/lukes/fan/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/lukes/fan/button.yaml'
+         data:
+           entity: sensor.lukes_fan_speed     
+   - name: Douche
+     icon: fas:shower
+     light: light.douche
+     motion: binary_sensor.douche_sensor_motion
+     temperature: sensor.douche_sensor_temperature  
+     humidity: sensor.douche_2
+     climate: water_heater.water
+     more_entities:
+       entities:
+         - binary_sesnor.badkamer_hygrostat
+     addons:
+       - name: Fan Control
+         icon: fas:fan
+         path: 'dwains-theme/addons/rooms/keuken/fan/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/keuken/fan/button.yaml'
+         data:
+           entity: sensor.zolder_fan_speed  
+   - name: Kantoor
+     icon: fas:laptop
+     light: light.kantoor_group
+     temperature: sensor.kantoor_temperature
+     motion: binary_sensor.kantoor_sensor_motion
+     addons:
+       - name: Printer
+         icon: fas:print
+         path: 'dwains-theme/addons/rooms/office/printer/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/office/printer/button.yaml'
+         data:
+           entity: binary_sensor.hp_printer_status
+       - name: Sonos
+         icon: fal:speaker
+         path: 'dwains-theme/addons/rooms/office/sonos/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/office/sonos/button.yaml'
+         data:
+           platform: sonos
+           speakers:
+             - entity: media_player.kantoor
+               name: Kantoor
+             - entity: media_player.woonkamer
+               name: Woonkamer
+           buttons:
+             - name: Radio 538
+               type: source
+               id: Radio 538
+             - name: Qmusic
+               type: source
+               id: Qmusic
+             - name: SLAM!
+               icon: mdi:television
+               type: source
+               id: SLAM!
+   - name: Oprit
+     icon: fas:car
+     light: light.oprit
+     motion: binary_sensor.oprit_sensor_motion
+     temperature: sensor.oprit_sensor_temperature
+     addons:
+       - name: Oprit
+         path: 'dwains-theme/addons/rooms/oprit/camera/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/oprit/camera/button.yaml'
+         data:
+           entity: camera.voordeur
+   - name: Achtertuin
+     icon: fas:tree
+     light: light.achtertuin
+     motion: binary_sensor.achtertuin_sensor_motion
+     temperature: sensor.achtertuin_sensor_temperature
+     addons:
+       - name: Oprit
+         path: 'dwains-theme/addons/rooms/achtertuin/camera/page.yaml'
+         button_path: 'dwains-theme/addons/rooms/achtertuin/camera/button.yaml'
+         data:
+           entity: camera.voordeur
+#     more_entities:
+#       columns: 2 #optional
+#       entities:
+#         - entity: sensor.name1
+#         - entity: sensor.name2
+#     page_entities:
+#       columns: 1 #optional
+#       entities:
+#         - entity: sensor.name1
+#         - entity: sensor.name2

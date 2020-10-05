@@ -1,0 +1,10 @@
+- name: Dion
+  id: dion6789
+  device_trackers:
+    - device_tracker.iphone
+    - device_tracker.dion_nmap
+- name: Mandie
+  id: mandie6789
+  device_trackers:
+    - device_tracker.lievemandie
+    - device_tracker.mandie_nmap

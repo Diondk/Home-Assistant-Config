@@ -1,0 +1,83 @@
+#customize
+  binary_sensor.achtertuin_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Achtertuin beweging
+  binary_sensor.douche_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Douche beweging
+  binary_sensor.front_door_ding:
+    icon: 'mdi:bell-alert'
+    friendly_name: Voordeur bel
+  binary_sensor.front_door_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Voordeur beweging
+  binary_sensor.keuken_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Keuken beweging
+  binary_sensor.gang_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Gang beweging
+  binary_sensor.lukes_kamer_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Lukes Kamer beweging
+  binary_sensor.oprit_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Oprit beweging
+  binary_sensor.overloop_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Overloop beweging
+  binary_sensor.slaapkamer_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Slaapkamer beweging
+  binary_sensor.wc_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: WC beweging
+  binary_sensor.woonkamer_sensor_motion:
+    icon: 'mdi:motion-sensor'
+    friendly_name: Woonkamer beweging
+  switch.droger:
+    icon: mdi:tumble-dryer
+  switch.wasmachine:
+    icon: mdi:washing-machine
+  switch.comfo_fan_0:
+    icon: 'mdi:fan'
+    friendly_name: ComfoFan Stand 2
+  switch.comfo_fan_1:
+    icon: 'mdi:fan'
+    friendly_name: ComfoFan Stand 3
+  fan.woonkamer:
+    icon: 'far:fan'
+    friendly_name: Woonkamer Ventilator
+  fan.lukes_fan:
+    icon: 'far:fan'
+    friendly_nae: Luke's Ventilator
+  sensor.achtertuin_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Achtertuin
+  sensor.douche_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Douche
+  sensor.gang_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Gang
+  sensor.keuken_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Keuken
+  sensor.lukes_kamer_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Lukes Kamer
+  sensor.oprit_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Oprit
+  sensor.overloop_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Overloop
+  sensor.slaapkamer_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Slaapkamer
+  sensor.wc_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: WC
+  sensor.woonkamer_sensor_temperature:
+    icon: 'fas:thermometer-three-quarters'
+    friendly_name: Woonkamer

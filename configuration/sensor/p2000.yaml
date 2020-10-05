@@ -1,0 +1,8 @@
+  - platform: p2000
+    name: P2000 Heel
+    regios: 23
+    disciplines: 1,2,3,4
+    radius: 6000
+    scan_interval: 10
+    latitude: !secret homelocation_lat
+    longitude: !secret homelocation_long

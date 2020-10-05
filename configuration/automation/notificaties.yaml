@@ -1,0 +1,135 @@
+# dryer off notification
+- id: '1547841168697'
+  alias: Notify - dryer off
+  trigger:
+  - entity_id: binary_sensor.dryer_on
+    for: 0:03:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      message: De droger is klaar!
+    service: notify.mobile_app_lievemandie
+  - data:
+      message: De droger is klaar!
+    service: notify.mobile_app_iphone
+# washer off notification
+- id: '1547884819761'
+  alias: Notify - Wasmachine klaar
+  trigger:
+  - entity_id: binary_sensor.washer_on
+    for: 0:03:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      message: De wasmachine is klaar!
+    service: notify.mobile_app_lievemandie
+  - data:
+      message: De wasmachine is klaar!
+    service: notify.mobile_app_iphone
+# Achter deur open notification
+- alias: Notify - Achterduer open
+  trigger:
+  - entity_id: binary_sensor.door_keuken
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      message: De achterdeur is open!
+    service: notify.mobile_app_iphone
+#notify luke's room movement
+- id: '1561410743090'
+  alias: Notify - Lukes Room movement
+  trigger:
+  - entity_id: binary_sensor.lukes_kamer_sensor_motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.homemode_luke
+    state: "on"
+  action:
+  - data:
+      message: Beweging in Luke zijn kamer!
+    service: notify.mobile_app_lievemandie
+#  - data:
+#      data:
+#        color: red
+#        duration: 2
+#        fontsize: large
+#        interrupt: 1
+#        position: center
+#        transparency: 0%
+#      message: Beweging in Luke zijn kamer
+#      title: Beweging!
+#    service: notify.woonkamer
+  - data:
+      message: Beweging in Luke zijn Kamer.
+    service: notify.mobile_app_iphone
+#notify someone at the door
+- id: '1575107920381'
+  alias: Notify - Doorbell
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.voordeur_ding
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.homemode_home
+    state: 'on'
+  action:
+#  - data:
+#      entity_id: media_player.woonkamer
+#      volume_level: 0.3
+#    service: media_player.volume_set
+#  - data:
+#      entity_id: media_player.kantoor
+#      volume_level: 0.3
+#    service: media_player.volume_set
+#  - data:
+#      entity_id: media_player.sonos_woonkamer
+#      media_content_id: https://dekleijnha.duckdns.org/local/Doorbell-ring-ding-dong-sound.mp3
+#      media_content_type: music
+#    service: media_player.play_media
+  - service: notify.all_iphones
+    data:
+      title: "Doorbell"
+      message: "Someone in front of the door!"
+  - condition: state
+    entity_id: binary_sensor.tv_on
+    state: "on"
+  - service: notify.tv
+    data:
+      message: "Someone in front of the door!"
+# P2000 melding #
+- alias: 'Notify - P2000 Bericht'  
+  trigger:
+    - platform: state
+      entity_id: sensor.p2000_heel 
+  action:
+    - service_template: notify.mobile_app_iphone
+      data_template:
+        title: "P2000 melding"
+        message: "{{ states.sensor.p2000_heel.state}}"
+        data:
+          url: "https://www.google.nl/maps/search/?api=1&query={{ states.sensor.p2000_heel.attributes.latitude }},{{ states.sensor.p2000_heel.attributes.longitude }}"
+#3d printer off
+- alias: 'Notify - Ender 3D Pro finished printing'
+  trigger:
+  - entity_id: binary_sensor.ender3_printing
+    for: 0:02:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      message: De 3D Printer is klaar
+    service: notify.mobile_app_iphone      
+      

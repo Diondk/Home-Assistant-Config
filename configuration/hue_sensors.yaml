@@ -1,0 +1,89 @@
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/49
+  value_template: '{{ (10 ** (float(value_json.state.lightlevel - 1) / 10000))|round(1) }}'
+  unit_of_measurement: Lux
+  name: 'Woonkamer Lux'
+  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/47
+  value_template: '{{ (value_json.state.temperature | float / 100 | float + 2)|round(1)}}'
+  unit_of_measurement: °C
+  name: 'Woonkamer Temperatuur'
+  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/14
+  value_template: '{{ (10 ** (float(value_json.state.lightlevel - 1) / 10000))|round(1) }}'
+  unit_of_measurement: Lux
+  name: 'Gang Lux'
+  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/12
+  value_template: '{{ (value_json.state.temperature | float / 100)|round(1)}}'
+  unit_of_measurement: °C
+  name: 'Gang Temperatuur'
+  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/18
+  value_template: '{{ (10 ** (float(value_json.state.lightlevel - 1) / 10000))|round(1) }}'
+  unit_of_measurement: Lux
+  name: 'WC Lux'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/16
+  value_template: '{{ (value_json.state.temperature | float / 100 | float + 2)|round(1)}}'
+  unit_of_measurement: °C
+  name: 'WC Temperatuur'
+  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/10
+  value_template: '{{ (10 ** (float(value_json.state.lightlevel - 1) / 10000))|round(1) }}'
+  unit_of_measurement: Lux
+  name: 'Overloop Lux'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/59
+  value_template: '{{ (10 ** (float(value_json.state.lightlevel - 1) / 10000))|round(1) }}'
+  unit_of_measurement: Lux
+  name: 'Lukes Kamer Lux'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/57
+  value_template: '{{ (value_json.state.temperature | float / 100 | float + 2)|round(1)}}'
+  unit_of_measurement: °C
+  name: 'Lukes Kamer Temperatuur'
+  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/8
+  value_template: '{{ (value_json.state.temperature | float / 100)|round(1)}}'
+  unit_of_measurement: °C
+  name: 'Overloop Temperatuur'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/52
+  value_template: '{{ value_json.state.status }}'
+  name: 'Woonkamer Motion'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/56
+  value_template: '{{ value_json.state.status }}'
+  name: 'Gang Motion'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/54
+  value_template: '{{ value_json.state.status }}'
+  name: 'WC Motion'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/55
+  value_template: '{{ value_json.state.status }}'
+  name: 'Overloop Motion'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/61
+  value_template: '{{ value_json.state.status }}'
+  name: 'Lukes Kamer Motion'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/101
+  value_template: '{{ value_json.state.status }}'
+  name: 'Achtertuin Motion'
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/102
+  value_template: '{{ value_json.state.status }}'
+  name: 'Oprit Motion'  
+- platform: rest
+  resource: http://192.168.178.213/api/mEo0UqKURH7rfaz3DznV2yt4Gp8XOKY9qXBN7WM4/sensors/105
+  value_template: '{{ (value_json.state.temperature | float / 100)|round(1)}}'
+  unit_of_measurement: °C
+  name: 'Slaapkamer Temperatuur'

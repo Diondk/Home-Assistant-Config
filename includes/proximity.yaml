@@ -1,0 +1,7 @@
+home:
+  ignored_zones:
+    - work
+  devices:
+    - device_tracker.lievemandie
+    - device_tracker.prive
+  tolerance: 50

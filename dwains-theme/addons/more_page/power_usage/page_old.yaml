@@ -1,0 +1,104 @@
+# Power usage addon for displaying Power, Gas and Water usage
+
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+  cards:
+
+# Power usage
+  - type: vertical-stack
+    cards:
+# Power Graph
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background-color: var(--dwains-theme-primary);
+        }
+      entities:
+        - entity: sensor.dsmr_reading_electricity_currently_delivered
+          icon: mdi:flash
+      name: Power Usage
+      line_color: 'var(--dwains-theme-accent)'
+      hours_to_show: 24
+      hour24: true
+      points_per_hour: 2
+      decimals: 0
+      show:
+        graph: bar
+        extrema: true
+        average: true
+# Power info
+    - type: entities
+      entities:
+        - entity: sensor.dsmr_day_consumption_electricity1
+          name: Laag Tarief Dag verbruik
+        - entity: sensor.dsmr_day_consumption_electricity2
+          name: Hoog Tarief Dag Verbruik
+        - entity: sensor.dsmr_day_consumption_electricity_cost_merged
+          name: Kosten vandaag
+      title: Info
+      show_header_toggle: false 
+
+# Gas usage
+  - type: vertical-stack
+    cards:
+# Gas Graph
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background-color: var(--dwains-theme-primary);
+        }
+      entities:
+        - sensor.dsmr_consumption_gas_currently_delivered
+      name: Gas Usage
+      line_color: 'var(--dwains-theme-accent)'
+      hours_to_show: 24
+      hour24: true
+      points_per_hour: 2
+      decimals: 3
+      show:
+        graph: bar
+        extrema: true
+        average: true
+# Gas Info
+    - type: entities
+      entities:
+        - entity: sensor.dsmr_day_consumption_gas
+          name: Verbruik vandaag
+        - entity: sensor.dsmr_day_consumption_gas_cost
+          name: Kosten vandaag
+      title: Info
+      show_header_toggle: false 
+        
+# Water usage
+#  - type: vertical-stack
+#    cards:
+# Water Graph
+#    - type: custom:mini-graph-card
+#      style: |
+#        ha-card {
+#          background-color: var(--dwains-theme-primary);
+#        }
+#      entities:
+#        - sensor.current_water_usage
+#      name: Water Usage
+#      line_color: 'var(--dwains-theme-accent)'
+#      hours_to_show: 24
+#      hour24: true
+#      points_per_hour: 2
+#      #decimals: 0
+#      show:
+#        graph: bar
+#        extrema: true
+#        average: true
+# Water Info
+#    - type: entities
+#      entities:
+#        - entity: sensor.average_water_usage
+#          name: Average
+#        - entity: sensor.average_daily_water_usage
+#          name: Average daily
+#        - entity: sensor.water_cost_today
+#          name: Cost today
+#      title: Info
+#      show_header_toggle: false 

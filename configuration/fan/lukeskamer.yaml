@@ -1,0 +1,24 @@
+  - platform: template
+    fans:
+      lukes_fan:
+        friendly_name: "Luke Kamer Fan"
+        value_template: "{{ states('input_boolean.lukes_fan_state') }}"
+        speed_template: "{{ states('input_select.lukes_fan_speed') }}"
+        turn_on:
+        
+        turn_off:
+          service: remote.send_command
+          data:
+            entity_id: remote.slaapkamer_luke_remote
+            device: fan
+            command: b64:JgCeASQOKg0OKQ4qDikOKQ8oDykOKQ4pDygOAAEEKwwqDg4pDikOKikOKg0qDSoOKQ4qDSroKg0qDg4pDygOKg4pDikqDQ8pDikPKA4AAQQrDCoODygOKQ4pDioPKCsMDioOKQ8oDgABBCsMKg0OKg4pDygPKQ4pKg0OKQ4qDygOAAEEKQ4qDQ4qDikOKQ8pDSopDg4pDioOKQ4AAQQpDioNDioPKA8oDygOKioNDikOKg4pDgABBCkOKg0OKQ8pDikPKA4qKQ4OKQ8oDioPAAEBKw4qDQ4pDioOKQ4pDikqDg8oDygOKg4AAQMqDikODikPKQ4pDikOKSoODikOKQ8pDgABAyoOKg0OKQ4qDikOKQ4pKw0OKQ8oDioOAAEDKg4pDg4pDioOKQ4pDikrDQ4pDikOKg4AAQMqDikODikOKQ4qDikOKSoODikOKQ4pDgABBCoOKg0OKQ4pDykOKQ4pKw0NKg4pDygOAAEEKg0rDQ4pDikOKQ4qDikpDg8oDioOKQ8AAQMpDioNDykNKg4pDygOKioNDygOKQ8pDQANBQAAAAAAAAAAAAA=
+        set_speed:
+          service: script.lukes_fan_set_speed
+          data_template:
+            speed: "{{ speed }}"
+        speeds:
+          - 'Off'
+          - 'Min'
+          - 'Med'
+          - 'Max'
+

@@ -1,0 +1,5 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/cameras.html
+
+ cameras:
+   - entity: camera.voordeur
+   - entity: camera.achtertuin_camera

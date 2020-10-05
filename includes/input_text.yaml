@@ -1,0 +1,4 @@
+  card_containers:
+    initial: Containers
+  software_version:
+    initial: Version

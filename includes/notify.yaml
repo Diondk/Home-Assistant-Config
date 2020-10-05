@@ -1,0 +1,8 @@
+- platform: group
+  name: all_iphones
+  services:
+    - service: mobile_app_iphone
+    - service: mobile_app_lievemandie
+- platform: nfandroidtv
+  name: TV
+  host: 192.168.1.73    

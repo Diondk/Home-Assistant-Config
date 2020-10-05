@@ -1,0 +1,286 @@
+################################################################################
+###                                                                          ###
+### AUTOMATIONS VOOR Rolluiken                                               ###
+###                                                                          ###
+################################################################################
+################################################################################
+# Automations voor rolluiken keuken
+################################################################################
+# Variabelen
+#	binary_sensor.door_keuken 				#sensor keukendeur
+# 	input_boolean.cover_auto				# automatische rolluik
+#	input_boolean.homemode_vacation			# vakantie modus	
+#	input_boolean.homemode_guest			# gast modus
+#	service: cover.open_cover
+#	service: cover.close_cover
+# Automations
+# 
+################################################################################
+
+################################################################################
+# Open rolluiken smorgens
+################################################################################
+- id: cover_open_de_rolluiken_smorgens
+  alias: COVER - Rolluiken open smorgens
+  trigger:
+  - platform: time_pattern
+    minutes: '/2'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.homemode_vacation
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.cover_auto
+        state: 'off'
+      - condition: state
+        entity_id: cover.eetkamerraam
+        state: 'closed'
+        for: 
+          minutes: 15
+      - condition: state
+        entity_id: cover.keukendeur
+        state: 'closed'
+        for: 
+          minutes: 15
+      - condition: state                                       # indien al handmatig geopend dan niet nogmaals
+        entity_id: input_boolean.cover_handmatig_open
+        state: 'off'
+    # Het weer gerelateerde condities
+      - condition: numeric_state                               # De temperatuur is tussen 0 en 20 graden
+        entity_id: sensor.heel_temperature                         
+        above: 0
+        below: 20
+    # werkdag onafhankelijke tijd condities
+      - condition: time      
+        before: '11:00:00'
+      - condition: sun                                 # vanaf een half uur voor zonsopkomt
+        after: sunrise
+        after_offset: -00:30:00
+      - condition: time                                # altijd na 07:00, eerder zijn we niet beneden
+        after: '07:00:00'   
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.cover_auto
+    - service: cover.open_cover                                # rolluik keuken openen
+      entity_id: cover.keukendeur
+    - service: cover.open_cover            
+      entity_id: cover.eetkamerraam
+    - service: notify.mobile_app_iphone                 
+      data:
+        message: "Rolluik keuken geopend 's morgens."
+################################################################################
+# Sluit rolluik keuken als de zon er op schijnt
+# condition: 
+#   Rolluiken Automatisch moet aan staan
+#   We moeten niet op vakantie zijn
+#   Het klapraam moet dicht zijn (Sensorwaarde is "off"
+#   Het keukenraam moet dicht zijn of op de tochtstand staan
+#   het rolluik is minstens al 15 minuten open
+#   De zon moet op de ramen schijnen: na 11:00 en voor één uur voor zonsondergang
+#   het moet warmer zijn dan 15 graden
+#   Irridiace > 700 gedurende tenminste een kwartier
+################################################################################
+
+- id: sluit_de_rolluiken_voor_het_keukenraam_omdat_de_zon_er_op_schijnt
+  alias: COVER - Rolluiken keuken sluiten tegen de zon
+  trigger:
+  - platform: time_pattern                                     # check elke 2 minuten
+    minutes: '/2'
+    seconds: 00
+  condition:
+    - condition: state
+      entity_id: 'input_boolean.cover_auto'                # Rolluiken op automatisch
+      state: 'on'
+    - condition: state
+      entity_id: 'input_boolean.homemode_vacation'                 # Niet op vakantie 
+      state: 'off'
+    - condition: state
+      entity_id: 'input_boolean.homemode_guest'                 # Niet op vakantie 
+      state: 'off'
+    - condition: state
+      entity_id: 'binary_sensor.door_keuken' # keukendeur is dicht
+      state: 'off'
+    - condition: state 
+      entity_id: cover.eetkamerraam                  # Het rolluik is al minstens 15 minuten open
+      state: 'open'
+      for:
+        minutes: 15
+    - condition: state 
+      entity_id: cover.keukendeur                 # Het rolluik is al minstens 15 minuten open
+      state: 'open'
+      for:
+        minutes: 15
+    - condition: time                                          
+      after: '11:00:00'                                        # na 11:00, eerder staat de zon er niet op
+    - condition: sun                                           
+      before: sunset                                           # tot een uur voor zonsondergang
+      before_offset: -01:00:00
+    - condition: numeric_state                                 
+      entity_id: sensor.heel_temperature                      # De temperatuur is boven 15 graden buienradar   
+      above: 15
+    - condition: numeric_state                                 # De irradiance is boven 700 W/m2 
+      entity_id: sensor.achtertuin_sensor_light_level                  
+      above: 60000
+#      for:                                                     # tenminste een kwartier
+#        minutes: 15
+
+  action:
+    - service: cover.close_cover                               # rolluik keuken sluiten zon
+      entity_id: cover.eetkamerraam
+    - service: cover.close_cover                               # rolluik keuken sluiten zon
+      entity_id: cover.keukendeur
+    - service: input_boolean.turn_on                           # rolluik keuken gesloten i.v.m. zon
+      data:
+        entity_id: input_boolean.rolluik_keuken_gesloten_zon   
+    - service: notify.mobile_app_iphone                 
+      data:
+        message: "Rolluik keuken gesloten i.v.m. zon."
+################################################################################
+# Open rolluik keuken als de zon weer weg is
+# conditions
+#   Rolluiken Automatisch moet aan staan
+#   We moeten niet op vacantie zijn
+#   Het rolluik moet i.v.m.de zon gesloten zijn
+#   Het rolluik moet minstens een kwartier dicht zijn geweest
+#   Irridiace < 300
+#   Na 17:00 uur
+#   verzet ook de input boolean weer 
+#   Mag niet meergebeuren nadat gesloten ivm zonsondergang. Hiervoor boolean 
+#     resetten in automation bij zonsondergang
+################################################################################
+
+- id: open_het_rolluik_voor_het_keukenraam_omdat_de_zon_weg_is
+  alias: COVER - Rolluik keuken openen want de zon is weg 
+  trigger:
+  - platform: time_pattern                                     # check elke 2 minuten
+    minutes: '/2'
+    seconds: 00
+  condition:
+    - condition: state
+      entity_id: 'input_boolean.auto_rolluiken'                # Rolluiken op automatisch
+      state: 'on'
+    - condition: state
+      entity_id: 'input_boolean.homemode_vacation'                 # Niet op vakantie 
+      state: 'off'
+    - condition: state
+      entity_id: 'input_boolean.homemode_guest'                 # Niet op vakantie 
+      state: 'off'      
+    - condition: state                                          
+      entity_id: cover.keukendeur                  # Is al minstens 15 minuten dicht
+      state: 'closed'
+      for:
+        minutes: 15
+    - condition: state                                          
+      entity_id: cover.eetkamerraam                  # Is al minstens 15 minuten dicht
+      state: 'closed'
+      for:
+        minutes: 15
+    - condition: state
+      entity_id: input_boolean.cover_gesloten_zon     # rolluik keuken is gesloten i.v.m. zon 
+      state: 'on'
+    - condition: time                                          # altijd dicht tot 17:00 (voorkomt 
+      after: '17:00:00'                                        #   reactie op wolken
+    - condition: numeric_state                                 # De irradiance is onder 300 W/m2 
+      entity_id: sensor.achtertuin_sensor_light_level                 
+      below: 50000
+
+  action:
+    - service: cover.open_cover                                # rolluik keuken openen zon
+      entity_id: cover.eetkamerraam
+    - service: cover.open_cover                                # rolluik keuken openen zon
+      entity_id: cover.keukendeur
+    - service: input_boolean.turn_off                          # rolluik keuken gesloten i.v.m. zon
+      data:
+        entity_id: input_boolean.cover_gesloten_zon  
+    - service: notify.mobile_app_iphone                             # bericht naar Dion
+      data:
+        message: "Rolluik keuken open, zon is weg"
+- id: sluit_de_rolluiken_voor_het_keukenraam
+  alias: Rolluiken keuken sluiten 's avonds
+  trigger:
+  - platform: time_pattern                                     # check elke 2 minuten
+    minutes: '/2'
+    seconds: 00
+  condition:
+    - condition: state
+      entity_id: 'input_boolean.cover_auto'                # Rolluiken op automatisch
+      state: 'on'
+    - condition: state
+      entity_id: 'input_boolean.homemode_vacation'                 # Niet op vakantie 
+      state: 'off'
+    - condition: state
+      entity_id: 'input_boolean.homemode_guest'                 # Niet op vakantie 
+      state: 'off'
+    - condition: state
+      entity_id: 'binary_sensor.keukendeur' # het keukenraam is dicht
+      state: 'off'                                                                                        
+    - condition: state                                          
+      entity_id: cover.keukendeur                 # rolluik is al minstens 15 minuten open
+      state: 'open'
+      for:
+        minutes: 15
+    - condition: state                                          
+      entity_id: cover.eetkamerraam                 # rolluik is al minstens 15 minuten open
+      state: 'open'
+      for:
+        minutes: 15        
+    - condition: sun                                           
+      after: sunset                                            # vanaf een nul na zonsondergang
+      after_offset: +00:00:00
+
+  action:
+    - service: cover.close_cover                               # rolluik keuken sluiten zon
+      entity_id: cover.eetkamerraam
+    - service: cover.close_cover                               # rolluik keuken sluiten zon
+      entity_id: cover.keukendeur
+    - service: input_boolean.turn_off                          # rolluik keuken gesloten i.v.m. zon
+      data:
+        entity_id: input_boolean.cover_gesloten_zon  
+    - service: notify.mobile_app_iphone                           # telegram bericht naar Wim
+      data:
+        message: "Rolluik keuken gesloten zonsondergang."
+################################################################################
+# Zet boolean handmatig geopend aan als het rolluik helemaal open is en de boolean 
+# rolluik_keuken_automatisch_geopend_smorgens is niet aan. Dwz handmatig geopend!
+# Deze boolean wordt hierboven gebruikt om nogmaals openen te blokkeren als het luik
+# toch weer handmatig is gesloten (we gaan weg bijvoorbeeld
+# Zet ook 's nachts beide booleans weer uit 
+################################################################################
+- id: rolluik_keuken_smorgens_handmatig_geopend
+  alias: Cover - Rolluik keuken 's morgens handmatig geopend
+  trigger:                                              
+  - platform: state                                            # Het rolluik is helemaal open (hoop ik)         
+    entity_id: cover.keukendeur          
+    to: 'open'
+  - platform: state
+    entity_id: cover.eetkamerraam
+    to: 'open'
+  condition:
+    - condition: state
+      entity_id: input_boolean.cover_auto
+      state: 'off'
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.cover_handmatig_open        
+#######################################################################################
+# Zet input booleans rolluik keuken 's nachts om 24:00 uit ###
+#######################################################################################
+- id: instellen_iput_booleans_keuken_voor_volgende_dag
+  alias: COVER - Input Boolean Rolluik Keuken instellen
+  trigger:
+  - platform: time
+    at: "00:00:00"
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.cover_gesloten_zon     # rolluik keuken gesloten i.v.m. zon
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.cover_auto
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.cover_handmatig_open

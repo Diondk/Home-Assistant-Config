@@ -1,0 +1,35 @@
+# friends of hue eetkamer knop 1 toggle
+- alias: SWITCH - eetkamer knop een
+  trigger: 
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: eetkamer
+      event: 1000
+  action:
+    - service: light.toggle
+      entity_id: light.eetkamer_verlichting
+# friends of hue eetkamer knop 1 long press
+- alias: SWITCH - eetkamer knop long press
+  trigger: 
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: eetkamer
+      event: 1003
+  action:
+    - service: light.turn_on
+      entity_id: light.eetkamer_verlichting
+      data: 
+        brightness: 152
+# friends of hue eetkamer knop 2 toggle
+- alias: SWITCH - eetkamer knop twee
+  trigger: 
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: eetkamer
+      event: 2002
+  action:
+    - service: light.toggle
+      entity_id: light.eetkamer_verlichting

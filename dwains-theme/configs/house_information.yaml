@@ -1,0 +1,26 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/house_information.html
+
+house_information:
+  favorites:
+     - entity: binary_sensor.voordeur_ding
+       icon_on: fas:bell
+       icon_off: fas:bell
+  #   - entity: binary_sensor.hallway_door_contact
+  #     icon_on: fas:door-open
+  #     icon_off: fas:door-closed
+  status:
+     - entity: input_boolean.homemode_home
+     - entity: input_boolean.homemode_away
+     - entity: input_boolean.homemode_douche
+     - entity: input_boolean.homemode_luke
+     - entity: input_boolean.homemode_night
+     - entity: input_boolean.homemode_guest
+     - entity: input_boolean.homemode_vacation
+  addons:
+    - name: Calendar
+      icon: mdi:calendar
+      path: 'dwains-theme/addons/house_information/calendar/page.yaml'
+      data:
+        calendars:
+          - calendar.family
+          - calendar.prive

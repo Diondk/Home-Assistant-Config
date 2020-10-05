@@ -1,0 +1,52 @@
+#-
+#  _
+# (_) ___  ___
+# | |/ _ \/ __|
+# | | (_) \__ \
+# |_|\___/|___/
+#
+#
+push:
+  categories:
+    - name: Turn on heating
+      identifier: turn_on_heating
+      actions:
+        - identifier: TURN_ON_HEATING
+          title: Turn on heating
+          activationMode: background
+          authenticationRequired: true
+          destructive: true
+actions:
+  - name: Play TV
+    background_color: "#000000"
+    label:
+      text: "Play/pause TV"
+      color: "#ff0000"
+    icon:
+      icon: play-pause
+      color: "#ffffff"
+  - name: Half sleep mode
+    background_color: "#000000"
+    label:
+      text: "Half sleep mode"
+      color: "#ff0000"
+    icon:
+      icon: sleep
+      color: "#ffffff"
+  - name: Rolluiken open
+    background_color: "#000000"
+    label:
+      text: "Rolluiken open"
+      color: "#ff0000"
+    icon:
+      icon: mdi:window-shutter-open
+      color: "#ffffff"
+  - name: Rolluiken Sluiten
+    background_color: "#000000"
+    label:
+      text: "Rolluiken Sluiten"
+      color: "#ff0000"
+    icon:
+      icon: mdi:window-shutter
+      color: "#ffffff"      
+      

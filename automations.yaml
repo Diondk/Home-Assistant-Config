@@ -1,0 +1,20 @@
+- id: '1592331008053'
+  alias: HA - Deconz refresh
+  description: ''
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data: {}
+    service: deconz.device_refresh
+- id: '1594208142189'
+  alias: Location - get update mandie
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - data:
+      data:
+        message: request_location_update
+    service: notify.mobile_app_lievemandie

@@ -1,0 +1,5 @@
+  - platform: buienradar
+    name: 'Heel'
+    latitude: !secret homelocation_lat
+    longitude: !secret homelocation_long
+    forecast: True

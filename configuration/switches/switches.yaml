@@ -1,0 +1,50 @@
+  - platform: mqtt
+    name: "Televisie kast"
+    state_topic: "stat/sonoff-tv/POWER"
+    command_topic: "cmnd/sonoff-tv/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    retain: false
+  - platform: mqtt
+    name: "Droger"
+    state_topic: "stat/sonoff-dr/POWER"  
+    command_topic: "cmnd/sonoff-dr/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    retain: false
+  - platform: mqtt
+    name: "Wasmachine"
+    state_topic: "stat/sonoff-wm/POWER"
+    command_topic: "cmnd/sonoff-wm/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    retain: false
+  - platform: mqtt
+    name: "Washing_machine"
+    state_topic: "stat/sonoff-wm/POWER"  
+    command_topic: "cmnd/sonoff-wm/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    retain: false
+    json_attributes_topic: "tele/sonoff-wm/SENSOR"
+    json_attributes_template: "{{ value_json['ENERGY'] | tojson }}"    
+  - platform: mqtt
+    name: "Dryer_machine"
+    state_topic: "stat/sonoff-dr/POWER"  
+    command_topic: "cmnd/sonoff-dr/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    qos: 1
+    retain: false
+    json_attributes_topic: "tele/sonoff-dr/SENSOR"
+    json_attributes_template: "{{ value_json['ENERGY'] | tojson }}"     
+  - platform: command_line
+    switches:
+      philips_ambilight:
+        command_on: curl -X POST --digest --insecure -u yvaCnTAh2Rf895br:80827060904100aa4b81d5f8e9c9f9de24e32c7061d4a312c2ed4f1a08b1c28d "https://192.168.1.73:1926/ambilight/currentconfiguration" -d '{"styleName":"FOLLOW_VIDEO","isExpert":"false","menuSetting":"STANDARD"}'
+        command_off: curl -X POST --digest --insecure -u yvaCnTAh2Rf895br:80827060904100aa4b81d5f8e9c9f9de24e32c7061d4a312c2ed4f1a08b1c28d "https://192.168.1.73:1926/ambilight/power" -d '{"power":"Off"}'
+        

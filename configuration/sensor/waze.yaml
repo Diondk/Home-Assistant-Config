@@ -1,0 +1,49 @@
+- platform: waze_travel_time
+  name: reistijdhuis
+  origin: zone.work
+  destination: zone.home
+  region: 'EU'
+  units: metric    # 'metric' for Metric, 'imperial' for Imperial
+  vehicle_type: car  # vehicle type used for route
+- platform: waze_travel_time
+  name: reistijdkantoor
+  origin: zone.home
+  destination: zone.work
+  region: 'EU'
+  units: metric    # 'metric' for Metric, 'imperial' for Imperial
+  vehicle_type: car  # vehicle type used for route
+- platform: waze_travel_time
+  name: huidigereistijd
+  origin: device_tracker.iphone
+  destination: zone.home
+  region: 'EU'
+  units: metric    # 'metric' for Metric, 'imperial' for Imperial
+  vehicle_type: car  # vehicle type used for route
+- platform: waze_travel_time
+  name: 'Dion naar Huis'
+  origin: device_tracker.iphone
+  destination: zone.home
+  units: metric 
+  vehicle_type: car 
+  region: 'EU'
+- platform: waze_travel_time
+  name: 'Mandie naar Huis'
+  origin: device_tracker.lievemandie
+  destination: zone.home
+  units: metric 
+  vehicle_type: car 
+  region: 'EU'
+- platform: waze_travel_time
+  name: 'Mandie naar Werk'
+  origin: zone.home
+  destination: zone.work_mandie
+  units: metric 
+  vehicle_type: car 
+  region: 'EU'
+- platform: waze_travel_time
+  name: 'Dion naar Mandie'
+  origin: device_tracker.iphone
+  destination: device_tracker.lievemandie
+  units: metric 
+  vehicle_type: car 
+  region: 'EU'

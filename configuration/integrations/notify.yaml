@@ -1,0 +1,3 @@
+  - platform: nfandroidtv
+    name: Woonkamer
+    host: !secret ip_tv_woonkamer

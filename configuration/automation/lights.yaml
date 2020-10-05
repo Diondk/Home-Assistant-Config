@@ -1,0 +1,35 @@
+#  .__  .__       .__     __          
+#  |  | |__| ____ |  |___/  |_  ______
+#  |  | |  |/ ___\|  |  \   __\/  ___/
+#  |  |_|  / /_/  >   Y  \  |  \___ \ 
+#  |____/__\___  /|___|  /__| /____  >
+#  
+- alias: "Lights: Change Lightstrip color on doorbell ring"
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.voordeur_ding
+    from: 'off'
+  action:
+    - service: scene.create
+      data:
+        scene_id: before
+        snapshot_entities:
+        - light.lightstrip_kantoor
+    - service: light.turn_on
+      entity_id: light.lightstrip_kantoor
+      data: 
+        color_name: blue
+    - delay: '00:01:30' 
+    - service: scene.turn_on
+      data_template: 
+        entity_id: scene.before    
+- alias: "Lights: Adaptive lighting enabled on office"        
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.activity_office
+    from: 'off'
+  action: 
+    - service: adaptive_lighting.apply
+      entity_id: switch.adaptive_lighting_office
+      data:
+        lights: light.kantoor_group

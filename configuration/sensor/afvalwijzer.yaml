@@ -1,0 +1,10 @@
+- platform: afvalbeheer
+  postcode: !secret postcode
+  streetnumber: !secret huisnummer
+  upcomingsensor: 1
+  wastecollector: MijnAfvalwijzer           
+  resources:                       
+    - restafval
+    - gft
+    - papier
+    - pmd

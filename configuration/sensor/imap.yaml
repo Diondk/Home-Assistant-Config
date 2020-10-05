@@ -1,0 +1,7 @@
+# Imap Sensor (Please get the imap.py from my repo if you use outlook/hotmail)
+  - platform: imap
+    server: imap.gmail.com
+    username: !secret google_username
+    password: !secret google_password
+    port: 993
+    folder: Inbox

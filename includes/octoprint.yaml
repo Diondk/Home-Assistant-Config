@@ -1,0 +1,5 @@
+host: !secret octoprint_ip
+api_key: !secret octoprint_api_key
+name: Ender3
+number_of_tools: 1
+bed: true

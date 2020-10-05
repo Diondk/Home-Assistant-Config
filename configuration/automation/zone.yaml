@@ -1,0 +1,27 @@
+- alias: zone - onbekend
+  trigger:
+    platform: state
+    entity_id: device_tracker.lievemandie
+    to: onbekend
+  action:
+    service: notify.mobile_app_iphone
+    data:
+      message: Mandie is in zone onbekend
+- alias: zone - anytime fitnes
+  trigger:
+    platform: state
+    entity_id: device_tracker.lievemandie
+    to: anytime
+  action:
+    service: notify.mobile_app_iphone
+    data:
+      message: Mandie is in zone anytime
+- alias: zone - anytime fitnes uit
+  trigger:
+    platform: state
+    entity_id: device_tracker.lievemandie
+    from: anytime
+  action:
+    service: notify.mobile_app_iphone
+    data:
+      message: Mandie is weg bij anytime       

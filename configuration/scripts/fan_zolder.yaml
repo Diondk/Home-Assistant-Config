@@ -1,0 +1,71 @@
+zolder_fan_on:
+  alias: zolder ventilator aan
+  mode: restart
+  sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.zolder_fan_state
+    - delay:
+        seconds: 1
+    - service_template: >
+        {% if is_state("input_select.zolder_fan_speed", "Min") %}
+          script.zolder_fan_min
+        {% elif is_state("input_select.zolder_fan_speed", "Med") %}
+          script.zolder_fan_med
+        {% elif is_state("input_select.zolder_fan_speed", "Max") %}
+          script.zolder_fan_max
+        {% endif %}
+
+zolder_fan_min:
+  alias: zolder ventilator min
+  mode: restart
+  sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.comfo_fan_0, switch.comfo_fan_1
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.zolder_fan_speed
+        option: "Min"
+    - service: fan.turn_on
+      entity_id: fan.zolder_fan
+
+zolder_fan_med:
+  alias: zolder ventilator med
+  mode: restart
+  sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.comfo_fan_1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.comfo_fan_0
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.zolder_fan_speed
+        option: "Med"
+    - service: fan.turn_on
+      entity_id: fan.zolder_fan
+      
+zolder_fan_max:
+  alias: zolder ventilator max
+  mode: restart
+  sequence:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.comfo_fan_0, switch.comfo_fan_1
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.zolder_fan_speed
+        option: "Max"
+    - service: fan.turn_on
+      entity_id: fan.zolder_fan
+      
+zolder_fan_set_speed:
+  alias: zolder ventilator snelheid
+  mode: restart
+  sequence:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.zolder_fan_speed
+        option: "{{ speed }}"

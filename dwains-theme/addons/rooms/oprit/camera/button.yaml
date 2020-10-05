@@ -1,0 +1,5 @@
+type: picture-entity
+entity: camera.voordeur
+camera_view: live
+template: rooms_child
+

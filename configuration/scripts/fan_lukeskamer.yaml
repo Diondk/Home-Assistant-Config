@@ -1,0 +1,64 @@
+lukes_fan_off:
+  alias: Lukes ventilator uit
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.slaapkamer_luke_remote
+        command: b64:JgCeASQOKg0OKQ4qDikOKQ8oDykOKQ4pDygOAAEEKwwqDg4pDikOKikOKg0qDSoOKQ4qDSroKg0qDg4pDygOKg4pDikqDQ8pDikPKA4AAQQrDCoODygOKQ4pDioPKCsMDioOKQ8oDgABBCsMKg0OKg4pDygPKQ4pKg0OKQ4qDygOAAEEKQ4qDQ4qDikOKQ8pDSopDg4pDioOKQ4AAQQpDioNDioPKA8oDygOKioNDikOKg4pDgABBCkOKg0OKQ8pDikPKA4qKQ4OKQ8oDioPAAEBKw4qDQ4pDioOKQ4pDikqDg8oDygOKg4AAQMqDikODikPKQ4pDikOKSoODikOKQ8pDgABAyoOKg0OKQ4qDikOKQ4pKw0OKQ8oDioOAAEDKg4pDg4pDioOKQ4pDikrDQ4pDikOKg4AAQMqDikODikOKQ4qDikOKSoODikOKQ4pDgABBCoOKg0OKQ4pDykOKQ4pKw0NKg4pDygOAAEEKg0rDQ4pDikOKQ4qDikpDg8oDioOKQ8AAQMpDioNDykNKg4pDygOKioNDygOKQ8pDQANBQAAAAAAAAAAAAA=
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.lukes_fan_speed
+        option: "Off"
+    - service: fan.turn_off
+      entity_id: fan.lukes_fan
+
+
+lukes_fan_min:
+  alias: Lukes ventilator min
+  mode: restart
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.slaapkamer_luke_remote
+        command: b64:JgBUASUNKw0NKg8oDygOKg8oDygOKQ8pDikPAAEDKQ4qDQ4qDSoOKSoNKw0pDisMKw0pDiroKQ4rDA4qDygPKCsMDioPKA8oDiopDiroKg0qDQ8pDikOKSsNDikOKQ4pDiopDiroKg0qDQ4qDikOKSsMDykPKA4pDiopDiroKg0qDQ4qDSoOKSsMDioPKA4pDioqDSrnKg4pDg4pDioPKCoNDioPKA8oDikrDSrnKw0qDQ4pDioOKSsMDioOKQ4pDykpDiroKQ4qDQ4pDioOKSoNDioOKQ8oDioqDSroKg0qDQ4qDSoOKSsMDioOKQ4pDykqDSrnKw0qDQ4pDioPKCsMDykOKQ4pDykpDivlLA0qDQ4pDykOKSsMDioOKQ4pDikqDinoKw0pDg4pDykNKikODikPKQ4pDikrDSnoKwwqDg4pDygOKSsNDikPKA4qDSopDioADQUAAAAA
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.lukes_fan_speed
+        option: "Min"
+    - service: fan.turn_on
+      entity_id: fan.lukes_fan
+lukes_fan_med:
+  mode: restart
+  alias: Lukes ventilator med
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.slaapkamer_luke_remote
+        command: b64:JgA2ASQOKg0OKg4pDygOKQ4qDikOKQ4pDioOAAEDKw0pDg8oDioOKSoNKg4pDioNKwwqDiroKg0qDQ8pDSoPKA4pDioOKQ4pKw0OKQ8AAQMqDSoNDioOKQ8oDioOKQ4pDioqDQ8oDgABBCoNKg4OKQ4pDygOKg4pDikPKSoNDikOAAEEKwwrDQ4pDikOKg4pDygPKA4qKQ4OKQ8AAQMqDSsNDygOKQ4qDikOKQ4qDikrDA4qDQABBCsNKQ4OKQ4qDikOKQ4qDikOKSoODikOAAEEKg0qDQ8pDSoOKQ4qDSoOKQ4pKw0OKQ4AAQQpDisMDioOKQ8oDioOKQ4pDygrDQ4pDgABBCoNKw0NKg4pDikOKg4pDikPKCsNDygOAAEEKQ4qDQ4pDioPKA8oDygOKg4pKwwPKQ8ADQUAAA==
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.lukes_fan_speed
+        option: "Med"
+    - service: fan.turn_on
+      entity_id: fan.lukes_fan
+lukes_fan_max:
+  mode: restart
+  alias: Lukes ventilator max
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.slaapkamer_luke_remote
+        command: b64:JgDcACUNKw0NKg4pDikPKQ4pDygOKQ8pDikOAAEDKg4qDQ4pDioOKSoNKg0qDioNKg0rDSnoKwwqDg4pDikOKg0qDikOKQ8pDikPKCroKQ4rDA4qDikPKA4pDykNKg8oDikPKSrnKg4pDg4pDikPKQ4pDikOKg0qDygPKCroKwwrDQ4pDikOKQ4qDikOKQ8oDioOKSvnKg0qDQ4qDygOKQ4pDioPKA4pDioNKinpKg0qDQ4pDioPKA4pDykOKQ4pDikOKirnKg4qDQ8oDikOKg4pDikPKA4qDygOKSoADQUAAAAAAAAAAAAAAAA=
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.lukes_fan_speed
+        option: "Max"
+    - service: fan.turn_on
+      entity_id: fan.lukes_fan
+lukes_fan_set_speed:
+  alias: Lukes ventilator snelheid
+  sequence:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.lukes_fan_speed
+        option: "{{ speed }}"

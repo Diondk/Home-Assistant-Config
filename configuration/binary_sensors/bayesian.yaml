@@ -1,0 +1,21 @@
+- platform: tod
+  name: 'sleep_time'
+  after: '23:00'
+  before: '7:00'
+- platform: 'bayesian'
+  name: in_bed_bayesian
+  prior: 0.6
+  probability_threshold: 0.65
+  observations:
+    - entity_id: 'binary_sensor.sleep_time'
+      prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'group.woonkamer_verlichting'
+      prob_given_true: 0.6
+      platform: 'state'
+      to_state: 'off'
+    - entity_id: 'mediaplayer.tv'
+      prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'off'

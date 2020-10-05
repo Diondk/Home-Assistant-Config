@@ -1,0 +1,4 @@
+octoprint_light_off: "curl -s http://192.168.1.4/api/printer/command -d '{\"command\":\"@WS_LIGHTSOFF\"}' -H 'Content-Type: application/json' -H 'X-Api-Key: C6F49D840CA94FF6831903A220A9FD7B'"
+octoprint_light_on: "curl -s http://192.168.1.4/api/printer/command -d '{\"command\":\"@WS_LIGHTSON\"}' -H 'Content-Type: application/json' -H 'X-Api-Key: C6F49D840CA94FF6831903A220A9FD7B'"
+cast_ha_woonkamer: catt -d "Huiskamer Hub" cast_site http://192.168.1.3:8123/dwains-theme/home
+cast_ha_woonkamer_stop: catt -d "Huiskamer Hub" stop

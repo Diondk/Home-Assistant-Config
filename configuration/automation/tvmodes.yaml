@@ -1,0 +1,125 @@
+#xbox
+- id: '1579361962942'
+  alias: TV - xbox aan
+  description: ''
+  trigger:
+  - entity_id: input_boolean.media_xbox
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - entity_id: media_player.plex_4k_led_tv_powered_by_android
+    service: media_player.turn_on
+  - entity_id: media_player.woonkamer_room_xbox_one
+    service: media_player.turn_on
+  - entity_id: media_player.plex_4k_led_tv_powered_by_android
+    service: media_player.select_source
+#netflix
+- alias: TV - netflix
+  description: ''
+  trigger:
+  - entity_id: input_boolean.media_netflix
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'Netflix'
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'off'
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'TV'
+  action:
+#    - service: media_player.select_source
+#      data: 
+#        entity_id: media_player.tv
+#        source: 📱 Netflix
+    - service_template: >
+        {% if is_state('sensor.tv_status', 'Netflix') %}
+          input_boolean.turn_on
+        {% elif is_state('sensor.tv_status', 'off') %}
+          input_boolean.turn_off
+        {% else %}
+          input_boolean.turn_off
+        {% endif %}
+      entity_id: input_boolean.media_netflix
+
+#plex
+- id: '1579363362097'
+  alias: TV - Plex
+  description: ''
+  trigger:
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'Plex'
+  - entity_id: input_boolean.media_plex
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.media_plex
+  - data:
+      source: 📱 Plex
+    entity_id: media_player.tv
+    service: media_player.select_source
+#youtube
+- id: '1579363573704'
+  alias: TV - Youtube
+  description: ''
+  trigger:
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'Youtube'
+  - entity_id: input_boolean.media_youtube
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.media_youtube
+  - data:
+      source: 📱 YouTube
+    entity_id: media_player.tv
+    service: media_player.select_source
+#prime
+- id: '1579363627413'
+  alias: TV - prime
+  description: ''
+  trigger:
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'Prime Video'
+  - entity_id: input_boolean.media_prime
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.media_prime
+  - data:
+      source: 📱 Prime Video
+    entity_id: media_player.tv
+    service: media_player.select_source
+#spotify
+- id: '1579363816945'
+  alias: TV - spotify
+  description: ''
+  trigger:
+  - entity_id: sensor.tv_status
+    platform: state
+    to: 'Spotify'
+  - entity_id: input_boolean.media_spotify
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.media_spotify
+  - data:
+      source: 📱 Spotify
+    entity_id: media_player.tv
+    service: media_player.select_source
+
