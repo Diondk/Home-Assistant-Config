@@ -61,7 +61,7 @@ wake_on_lan:
 sensor: !include_dir_merge_list configuration/sensor/
 light: !include_dir_merge_list configuration/light/
 group: !include_dir_merge_named configuration/group/
-automation: !include_dir_merge_list  configuration/automation/
+
 scene: !include_dir_merge_named configuration/scene/
 script: !include_dir_merge_named configuration/scripts/
 switch: !include_dir_merge_list configuration/switches/
@@ -92,6 +92,7 @@ device_tracker: !include includes/device_trackers.yaml
 #managed via UI
 
 # Others:
+automation: !include_dir_merge_list automations/
 person: !include includes/persons.yaml
 homekit: !include includes/homekit.yaml
 discovery: !include includes/discovery.yaml

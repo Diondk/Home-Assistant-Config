@@ -135,11 +135,11 @@ I am using  [Dwain's Theme](https://github.com/dwainscheeren/lovelace-dwains-the
         </tr>
         <tr>
             <td>Philips Hue White and Color E14 </td>
-            <td>2</td>
+            <td>1</td>
         </tr>
         <tr>
             <td>Philips Hue Ambiance candle E14 </td>
-            <td>1</td>
+            <td>2</td>
         </tr>
         <tr>
             <td>Philips Hue E27 White and Color</td>
