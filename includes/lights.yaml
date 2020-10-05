@@ -1,0 +1,27 @@
+#    _      _____ _____ _    _ _______ 
+#   | |    |_   _/ ____| |  | |__   __|
+#   | |      | || |  __| |__| |  | |   
+#   | |      | || | |_ |  __  |  | |   
+#   | |____ _| || |__| | |  | |  | |   
+#   |______|_____\_____|_|  |_|  |_|   
+#                                      
+#                       
+- platform: group
+  name: eetkamer verlichting
+  entities:
+    - light.eetkamer_edison_1
+    - light.eetkamer_edison_2
+    - light.eetkamer_filament_groot_1      
+    - light.eetkamer_filament_groot_2
+- platform: group
+  name: Keuken
+  entities:
+    - light.keuken_spot_1
+    - light.keuken_spot_2
+    - light.keuken_spot_3
+- platform: group
+  name: Kantoor group
+  entities:
+    - light.kantoor
+    - light.lightstrip_kantoor
+

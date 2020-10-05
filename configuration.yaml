@@ -29,27 +29,8 @@ python_script:
 #alexa
 api:
 
-alexa:
-  smart_home:
-    filter:
-      include_domains:
-        - switch
-        - light
-      exclude_entities:
-        - switch.outside
-    entity_config:
-      switch.comfo_fan_0:
-        name: "House fan mid"
-        description: "Comfo fan mid"
-      switch.comfo_fan_1:
-        name: "House fan high"
-        description: "Comfo fan high"
-      light.keuken:
-        name: "Kitchen Light"
-        description: "Kitchen Light"
-      group.woonkamer_verlichting:
-        name: "Livingroom light"
-        description: "Livingroom Light"
+
+
 
 #systemhealth
 mobile_app:
@@ -63,14 +44,14 @@ wake_on_lan:
 
 
 
-#    _   _                  _____             __ _       
-#   | \ | |                / ____|           / _(_)      
-#   |  \| | _____      __ | |     ___  _ __ | |_ _  __ _ 
-#   | . ` |/ _ \ \ /\ / / | |    / _ \| '_ \|  _| |/ _` |
-#   | |\  |  __/\ V  V /  | |___| (_) | | | | | | | (_| |
-#   |_| \_|\___| \_/\_/    \_____\___/|_| |_|_| |_|\__, |
-#                                                   __/ |
-#                                                  |___/ 
+#    _____ _____ ____  _   _ _  _____    _____ ____  _   _ ______ _____ _____ 
+#   |  __ \_   _/ __ \| \ | ( )/ ____|  / ____/ __ \| \ | |  ____|_   _/ ____|
+#   | |  | || || |  | |  \| |/| (___   | |   | |  | |  \| | |__    | || |  __ 
+#   | |  | || || |  | | . ` |  \___ \  | |   | |  | | . ` |  __|   | || | |_ |
+#   | |__| || || |__| | |\  |  ____) | | |___| |__| | |\  | |     _| || |__| |
+#   |_____/_____\____/|_| \_| |_____/   \_____\____/|_| \_|_|    |_____\_____|
+#                                                                             
+#                                                   
 #inputs
 input_datetime: !include includes/input_datetimes.yaml
 input_number: !include includes/input_numbers.yaml
@@ -84,24 +65,27 @@ device_tracker: !include includes/device_trackers.yaml
 
 #merge list still need to move to 1 file
 sensor: !include_dir_merge_list includes/sensor/
-light: !include_dir_merge_list includes/light/
-group: !include_dir_merge_named includes/group/
-#binary_sensor: !include_dir_merge_list includes/binary_sensors/
-scene: !include_dir_merge_named includes/scene/
+
+
 script: !include_dir_merge_named includes/scripts/
-switch: !include_dir_merge_list includes/switches/
+
 
 # Others:
 automation: !include_dir_merge_list automations/
+alexa: !include includes/alexa.yaml
 binary_sensor: !include includes/binary_sensors.yaml
+group: !include includes/groups.yaml
 person: !include includes/persons.yaml
 homekit: !include includes/homekit.yaml
 fan: !include includes/fan.yaml
 discovery: !include includes/discovery.yaml
 proximity: !include includes/proximity.yaml
+light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 camera: !include includes/camera.yaml
 ios: !include includes/ios.yaml
+switch: !include includes/switches.yaml
+scene: !include includes/scenes.yaml
 shell_command: !include includes/shell_commands.yaml
 calendar: !include includes/calander.yaml
 octoprint: !include includes/octoprint.yaml

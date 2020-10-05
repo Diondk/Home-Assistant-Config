@@ -33,3 +33,97 @@
       entity_id: switch.adaptive_lighting_office
       data:
         lights: light.kantoor_group
+#outdoor lights turn on after sunset
+- alias: "Lights: Turn on after sunset, off at sunrise"
+  trigger: 
+    - platform: sun
+      event: sunset
+    - platform: sun
+      event: sunrise
+  action:
+    - service: >-
+        {% if trigger.event == 'sunset' %}
+          light.turn_on
+        {% elif trigger.event == 'sunrise' %}
+          light.turn_off
+        {% endif %}
+      entity_id: 
+        - light.achtertuin
+        - light.oprit
+    - service: notify.mobile_app_iphone
+      data_template:
+        title: "Lights: Sunrise or Sunset"
+        message: >
+          {% if trigger.event == 'sunset' %}
+            "Lights: Outside turned on."
+          {% elif trigger.event == 'sunrise' %}
+            "Lights: Outside turned off."
+          {% endif %}        
+# lights outside dim at 23:00
+- alias: "Lights: Dim the lights at 23:00"        
+  trigger: 
+    platform: time
+    at: '23:00:00'
+  action: 
+    - service: light.turn_on
+      entity_id: 
+        - light.oprit
+        - light.achtertuin
+      data:
+        brightness: 1
+#drive way light motion detected
+- alias: "Lights: Drive way turn on at motion detected"
+  trigger: 
+    platform: state
+    entity_id: binary_sensor.oprit_sensor_motion
+    from: 'off'
+  condition:
+    condition: sun
+    after: sunset
+  action:
+    - service: scene.create
+      data:
+        scene_id: before
+        snapshot_entities:
+        - light.oprit
+    - service: light.turn_on
+      entity_id: light.oprit
+      data: 
+        brightness: 255
+    - delay: '00:01:30' 
+    - service: scene.turn_on
+      data_template: 
+        entity_id: scene.before 
+#outdoor lights check        
+- alias: "Lights: If outdoor lights are on after sunrise but before sunset turn them off"
+  trigger:
+    - platform: time_pattern
+      minutes: '/2'
+  condition:
+  - condition: sun                                         
+    before: sunset      
+    after: sunrise
+  - condition: or
+    conditions: 
+      - condition: state
+        entity_id: light.oprit
+        state: 'on'
+      - condition: state
+        entity_id: light.achtertuin
+        state: 'on'
+  action: 
+    - service: light.turn_off
+      entity_id: 
+        - light.oprit
+        - light.achtertuin
+    - service: notify.mobile_app_iphone
+      data_template:
+        title: "Lights: Outside still on"
+        message: >
+          {% if (is_state('light.oprit', 'on')) and (is_state('light.achtertuin', 'off')) %}
+            "Lights: Driveway is still on."
+          {% elif (is_state('light.oprit', 'off')) and (is_state('light.achtertuin', 'on')) %}
+            "Lights: Back Yard is still on."
+          {% else %}
+            "Lights: Both Driveway and Back Yard are still on"
+          {% endif %}

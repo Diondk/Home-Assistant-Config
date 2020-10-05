@@ -9,7 +9,7 @@
 - alias: "Night mode: automatically turn off at 7AM"
   trigger:
     - platform: time
-      at: "07:00"
+      at: "07:00:00"
 #    - platform: state
 #      entity_id: input_boolean.alarm_clock
 #      from: "on"

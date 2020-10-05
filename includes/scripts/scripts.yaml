@@ -30,3 +30,12 @@ turn_water_off:
       data:
         entity_id: water_heater.water
         operation_mode: 'off' 
+light_25_at_11:
+  alias: 'Set lights on 25%'
+  sequence: 
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.oprit
+          - light.achtertuin
+        brightness: 0

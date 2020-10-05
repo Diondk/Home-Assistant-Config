@@ -1,0 +1,30 @@
+#             _      ________   __          
+#       /\   | |    |  ____\ \ / /    /\    
+#      /  \  | |    | |__   \ V /    /  \   
+#     / /\ \ | |    |  __|   > <    / /\ \  
+#    / ____ \| |____| |____ / . \  / ____ \ 
+#   /_/    \_\______|______/_/ \_\/_/    \_\
+#                                           
+#                                           
+
+
+  smart_home:
+    filter:
+      include_domains:
+        - switch
+        - light
+      exclude_entities:
+        - switch.outside
+    entity_config:
+      switch.comfo_fan_0:
+        name: "House fan mid"
+        description: "Comfo fan mid"
+      switch.comfo_fan_1:
+        name: "House fan high"
+        description: "Comfo fan high"
+      light.keuken:
+        name: "Kitchen Light"
+        description: "Kitchen Light"
+      group.woonkamer_verlichting:
+        name: "Livingroom light"
+        description: "Livingroom Light"

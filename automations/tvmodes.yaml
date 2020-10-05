@@ -36,7 +36,7 @@
 #      data: 
 #        entity_id: media_player.tv
 #        source: 📱 Netflix
-    - service_template: >
+    - service: >
         {% if is_state('sensor.tv_status', 'Netflix') %}
           input_boolean.turn_on
         {% elif is_state('sensor.tv_status', 'off') %}
