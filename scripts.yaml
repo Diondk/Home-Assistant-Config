@@ -1,7 +1,0 @@
-test:
-  alias: Test
-  mode: single
-  sequence:
-  - data: {}
-    entity_id: script.zolder_fan_min
-    service: script.turn_off
