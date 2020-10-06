@@ -3,9 +3,8 @@
   command: 'curl -X  GET --digest --insecure -u cdzM2DXemFjvbA96:272ddf589ecf55237985f4b73fa7b9b5b8283cc67f7e4efd606532dcba6ef60c https://192.168.1.73:1926/6/ambilight/power'
   name: Ambilight
   value_template: '{{ value_json.power }}'
-- platform: template
-  sensors:
-    tv_status:
-      entity_id: media_player.tv
-      value_template: '{{states("media_player.tv")}}'
-      friendly_name: TV Status
+# - platform: template
+#  sensors:
+#    tv_status:
+#    value_template: '{{states("media_player.tv")}}'
+#      friendly_name: TV Status

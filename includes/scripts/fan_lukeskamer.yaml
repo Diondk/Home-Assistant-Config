@@ -8,7 +8,7 @@ lukes_fan_off:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.lukes_fan_speed
-        option: "Off"
+        option: "off"
     - service: fan.turn_off
       entity_id: fan.lukes_fan
 
@@ -24,7 +24,7 @@ lukes_fan_min:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.lukes_fan_speed
-        option: "Min"
+        option: "min"
     - service: fan.turn_on
       entity_id: fan.lukes_fan
 lukes_fan_med:
@@ -38,7 +38,7 @@ lukes_fan_med:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.lukes_fan_speed
-        option: "Med"
+        option: "med"
     - service: fan.turn_on
       entity_id: fan.lukes_fan
 lukes_fan_max:
@@ -52,7 +52,7 @@ lukes_fan_max:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.lukes_fan_speed
-        option: "Max"
+        option: "max"
     - service: fan.turn_on
       entity_id: fan.lukes_fan
 lukes_fan_set_speed:

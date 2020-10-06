@@ -6,18 +6,18 @@ sleep_mode:
   icon: mdi:bed-king
 woonkamer_fan_speed:
   options:
-    - 'Off'
-    - 'Min'
-    - 'Med'
-    - 'Max'
+    - 'off'
+    - 'min'
+    - 'med'
+    - 'max'
 lukes_fan_speed:
   options:
-    - 'Off'
-    - 'Min'
-    - 'Med'
-    - 'Max'
+    - 'off'
+    - 'min'
+    - 'med'
+    - 'max'
 zolder_fan_speed:
   options:
-    - 'Min'
-    - 'Med'
-    - 'Max'
+    - 'off'
+    - 'med'
+    - 'max'

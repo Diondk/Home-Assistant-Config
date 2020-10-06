@@ -8,7 +8,7 @@ woonkamer_fan_off:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.woonkamer_fan_speed
-        option: "Off"
+        option: "off"
     - service: fan.turn_off
       entity_id: fan.woonkamer_fan
       
@@ -16,11 +16,11 @@ woonkamer_fan_on:
   alias: Woonkamer ventilator aan
   sequence:
     - service_template: >
-        {% if is_state("input_select.woonkamer_fan_speed", "Min") %}
+        {% if is_state("input_select.woonkamer_fan_speed", "min") %}
           script.woonkamer_fan_min
-        {% elif is_state("input_select.woonkamer_fan_speed", "Med") %}
+        {% elif is_state("input_select.woonkamer_fan_speed", "med") %}
           script.woonkamer_fan_med
-        {% elif is_state("input_select.woonkamer_fan_speed", "Max") %}
+        {% elif is_state("input_select.woonkamer_fan_speed", "max") %}
           script.woonkamer_fan_max
         {% endif %}
 
@@ -34,7 +34,7 @@ woonkamer_fan_min:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.woonkamer_fan_speed
-        option: "Min"
+        option: "min"
     - service: fan.turn_on
       entity_id: fan.woonkamer_fan
 woonkamer_fan_med:
@@ -47,7 +47,7 @@ woonkamer_fan_med:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.woonkamer_fan_speed
-        option: "Med"
+        option: "med"
     - service: fan.turn_on
       entity_id: fan.woonkamer_fan
 woonkamer_fan_max:
@@ -60,7 +60,7 @@ woonkamer_fan_max:
     - service: input_select.select_option
       data_template:
         entity_id: input_select.woonkamer_fan_speed
-        option: "Max"
+        option: "max"
     - service: fan.turn_on
       entity_id: fan.woonkamer_fan
 woonkamer_fan_set_speed:

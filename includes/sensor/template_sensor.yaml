@@ -30,7 +30,7 @@
   sensors:
     woonkamer_fan_speed:
       value_template: >
-          {% if states.fan.woonkamer_fan.state == 'Off' -%}off
+          {% if states.fan.woonkamer_fan.state == 'off' -%}off
           {% else %}
             {{ state_attr("fan.woonkamer_fan", "speed") }}
           {% endif %}
@@ -38,7 +38,7 @@
   sensors:
     lukes_fan_speed:
       value_template: >
-          {% if states.fan.lukes_fan.state == 'Off' -%}off
+          {% if states.fan.lukes_fan.state == 'off' -%}off
           {% else %}
             {{ state_attr("fan.lukes_fan", "speed") }}
           {% endif %}
@@ -46,7 +46,7 @@
   sensors:
     zolder_fan_speed:
       value_template: >
-          {% if states.fan.zolder_fan.state == 'Off' -%}off
+          {% if states.fan.zolder_fan.state == 'off' -%}off
           {% else %}
             {{ state_attr("fan.zolder_fan", "speed") }}
           {% endif %}

@@ -29,8 +29,6 @@
        shellyswitch25-10521cf159b9:
          mode: "roller"
          roller-0-name: "Keukendeur"
-         roller-0-class: "Keukendeur"
        shellyswitch25-40F52022A99C:
          mode: "roller"
-         roller-0-name: "Eetkamerraam"
-         roller-0-class: "Eetkamerraam"         
+         roller-0-name: "Eetkamerraam"    

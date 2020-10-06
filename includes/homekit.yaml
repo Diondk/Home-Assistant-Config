@@ -21,6 +21,8 @@ filter:
     - sun
     - switch
     - zone
+    - climate
+    - water_heater
   include_entities:
     - light.woonkamer
     - light.slaapkamer
@@ -34,19 +36,17 @@ filter:
     - light.kantoor_group
     - media_player.woonkamer
     - media_player.kantoor
-    - media_player.55pus8503_12
+    - media_player.tv
 entity_config:
   media_player.woonkamer:
     name: Living room speakers
     feature_list:
-      - feature: on_off
       - feature: toggle_mute
   media_player.Kantoor:
     name: Kantoor speakers
     feature_list:
-      - feature: on_off
       - feature: toggle_mute
-  media_player.55pus8503_12:
+  media_player.tv:
     name: TV
     feature_list:
       - feature: on_off

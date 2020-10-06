@@ -24,10 +24,10 @@
           data_template:
             speed: "{{ speed }}"
         speeds:
-          - 'Off'
-          - 'Min'
-          - 'Med'
-          - 'Max'
+          - 'off'
+          - 'min'
+          - 'med'
+          - 'max'
 # LIVING ROOM
   - platform: template
     fans:
@@ -46,10 +46,10 @@
           data_template:
             speed: "{{ speed }}"
         speeds:
-          - 'Off'
-          - 'Min'
-          - 'Med'
-          - 'Max'
+          - 'off'
+          - 'min'
+          - 'med'
+          - 'max'
 # #HOUSE FAN
   - platform: template
     fans:
@@ -66,8 +66,8 @@
          data_template:
            speed: "{{ speed }}"
        speeds:
-         - 'Min'
-         - 'Med'
-         - 'Max'
+         - 'off'
+         - 'med'
+         - 'max'
 
 
