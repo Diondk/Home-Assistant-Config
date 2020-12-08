@@ -1,0 +1,31 @@
+- platform: plex_recently_added
+  token: !secret plex_token
+  host: !secret plex_host
+  port: !secret plex_port
+  max: 25
+  download_images: false
+  img_dir: "/custom-lovelace/upcoming-media-card/images/plex/tv/"
+  section_types:
+    - show
+- platform: plex_recently_added
+  name: plex_recently_added_movies
+  token: !secret plex_token
+  host: !secret plex_host
+  port: !secret plex_port
+  max: 25
+  download_images: false
+  img_dir: "/custom-lovelace/upcoming-media-card/images/plex/movies/"
+  section_types:
+    - movie
+- platform: radarr_upcoming_media
+  api_key: !secret radarr_api
+  host: !secret radarr_host
+  port: !secret radarr_port
+  days: 720
+  max: 100
+- platform: sonarr_upcoming_media
+  api_key: !secret sonarr_api
+  host: !secret sonarr_host
+  port: !secret sonarr_port
+  days: 720
+  max: 100

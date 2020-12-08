@@ -8,3 +8,7 @@
   device_trackers:
     - device_tracker.lievemandie
     - device_tracker.mandie_nmap
+- name: Schoonma
+  id: schoonma
+  device_trackers: 
+    - device_tracker.aa_e9_1a_6c_a9_80

@@ -1,0 +1,278 @@
+homeassistant:
+  customize:
+    sensor.plex_lanbandwidth:
+      icon: mdi:lan
+    sensor.plex_wanbandwidth:
+      icon: mdi:wan
+    sensor.plex_totalbandwidth:
+      icon: mdi:lan-pending
+
+sensor:
+  - platform: rest
+    name: Tautulli API Libraries
+    resource: !secret taut_url_libraries
+    json_attributes:
+      - response
+    value_template: '{{ value_json.response.result }}'
+    scan_interval: 60
+  - platform: rest
+    name: Tautulli API Activity
+    resource: !secret taut_url_activity
+    json_attributes:
+      - response
+    value_template: '{{ value_json.response.result }}'
+    scan_interval: 60
+
+  - platform: tautulli
+    api_key: !secret tautulli_apikey
+    host: !secret tautulli_host
+    port: !secret tautulli_port
+    monitored_conditions:
+      - lan_bandwidth
+      - wan_bandwidth
+      - total_bandwidth
+      - library_name
+      - full_title
+      - tagline
+      - title
+      - progress_percent
+      - summary
+      - container
+      - indexes
+      - libraries
+      - media_type
+  - platform: template
+    sensors:
+      plex_current_users:
+        friendly_name: Huidige gebruikers
+        icon_template: mdi:plex
+        value_template: >
+          {% for activity in states.sensor.tautulli_api_activity.attributes["response"]["data"]["sessions"] %}
+            {{ activity.user }}
+            {% if not loop.last %}
+              |
+            {% endif %}
+          {% endfor %}
+      plex_movie_counter:
+        friendly_name: Films in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'Films' or library.section_name == 'Documentaires'%}
+              {% set counter.value = counter.value + (library.count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_series_counter:
+        friendly_name: Series in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'TV Series' or library.section_name == 'Kinderseries' or library.section_name == 'TV Programma' %}
+              {% set counter.value = counter.value + (library.count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_season_counter:
+        friendly_name: Seizoenen in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'TV Series' or library.section_name == 'Kinderseries' or library.section_name == 'TV Programma' %}
+              {% set counter.value = counter.value + (library.parent_count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_episode_counter:
+        friendly_name: Afleveringen in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'TV Series' or library.section_name == 'Kinderseries' or library.section_name == 'TV Programma' %}
+              {% set counter.value = counter.value + (library.child_count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_topmovie:
+        friendly_name: Meest bekeken film in Plex
+        icon_template: mdi:plex
+        value_template: '{{ state_attr("sensor.tautulli", "Top Movie") }}'
+      plex_toptvshow:
+        friendly_name: Meest bekeken serie in Plex
+        icon_template: mdi:plex
+        value_template: '{{ state_attr("sensor.tautulli", "Top TV Show") }}'
+      plex_topuser:
+        friendly_name: Top gebruiker
+        icon_template: mdi:plex
+        value_template: '{{ state_attr("sensor.tautulli", "Top User") }}'
+      plex_lanbandwidth:
+        value_template: '{{ (states.sensor.tautulli.attributes.lan_bandwidth / 1024) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+        friendly_name: 'Plex LAN Bandbreedte'
+      plex_wanbandwidth:
+        value_template: '{{ (states.sensor.tautulli.attributes.wan_bandwidth / 1024) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+        friendly_name: 'Plex WAN Bandbreedte'
+      plex_totalbandwidth:
+        value_template: '{{ (states.sensor.tautulli.attributes.total_bandwidth / 1024) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+        friendly_name: 'Plex Totaal Bandbreedte'
+homeassistant:
+  customize:
+    sensor.plex_lanbandwidth:
+      icon: mdi:lan
+    sensor.plex_wanbandwidth:
+      icon: mdi:wan
+    sensor.plex_totalbandwidth:
+      icon: mdi:lan-pending
+
+sensor:
+  - platform: rest
+    name: Tautulli API Libraries
+    resource: !secret taut_url_libraries
+    json_attributes:
+      - response
+    value_template: '{{ value_json.response.result }}'
+    scan_interval: 60
+  - platform: rest
+    name: Tautulli API Activity
+    resource: !secret taut_url_activity
+    json_attributes:
+      - response
+    value_template: '{{ value_json.response.result }}'
+    scan_interval: 60
+
+  - platform: tautulli
+    api_key: !secret tautulli_apikey
+    host: !secret tautulli_host
+    port: !secret tautulli_port
+    monitored_conditions:
+      - lan_bandwidth
+      - wan_bandwidth
+      - total_bandwidth
+      - library_name
+      - full_title
+      - tagline
+      - title
+      - progress_percent
+      - summary
+      - container
+      - indexes
+      - libraries
+      - media_type
+  - platform: template
+    sensors:
+      plex_current_users:
+        friendly_name: Huidige gebruikers
+        icon_template: mdi:plex
+        value_template: >
+          {% for activity in states.sensor.tautulli_api_activity.attributes["response"]["data"]["sessions"] %}
+            {{ activity.user }}
+            {% if not loop.last %}
+              |
+            {% endif %}
+          {% endfor %}
+      plex_movie_counter:
+        friendly_name: Films in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'Films' or library.section_name == 'Documentaires'%}
+              {% set counter.value = counter.value + (library.count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_series_counter:
+        friendly_name: Series in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'TV Series' or library.section_name == 'Kinderseries' or library.section_name == 'TV Programma' %}
+              {% set counter.value = counter.value + (library.count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_season_counter:
+        friendly_name: Seizoenen in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'TV Series' or library.section_name == 'Kinderseries' or library.section_name == 'TV Programma' %}
+              {% set counter.value = counter.value + (library.parent_count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_episode_counter:
+        friendly_name: Afleveringen in Plex
+        icon_template: mdi:plex
+        value_template: >-
+          {% set counter = namespace(value=0) %}
+
+          {% for library in states.sensor.tautulli_api_libraries.attributes["response"]["data"] %}
+            {% if library.section_name == 'TV Series' or library.section_name == 'Kinderseries' or library.section_name == 'TV Programma' %}
+              {% set counter.value = counter.value + (library.child_count | int) %}
+            {% endif %}
+
+            {% if loop.last %}
+              {{ counter.value }}
+            {% endif %}
+          {% endfor %}
+      plex_topmovie:
+        friendly_name: Meest bekeken film in Plex
+        icon_template: mdi:plex
+        value_template: '{{ state_attr("sensor.tautulli", "Top Movie") }}'
+      plex_toptvshow:
+        friendly_name: Meest bekeken serie in Plex
+        icon_template: mdi:plex
+        value_template: '{{ state_attr("sensor.tautulli", "Top TV Show") }}'
+      plex_topuser:
+        friendly_name: Top gebruiker
+        icon_template: mdi:plex
+        value_template: '{{ state_attr("sensor.tautulli", "Top User") }}'
+      plex_lanbandwidth:
+        value_template: '{{ (states.sensor.tautulli.attributes.lan_bandwidth / 1024) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+        friendly_name: 'Plex LAN Bandbreedte'
+      plex_wanbandwidth:
+        value_template: '{{ (states.sensor.tautulli.attributes.wan_bandwidth / 1024) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+        friendly_name: 'Plex WAN Bandbreedte'
+      plex_totalbandwidth:
+        value_template: '{{ (states.sensor.tautulli.attributes.total_bandwidth / 1024) | round(2) }}'
+        unit_of_measurement: 'Mbps'
+        friendly_name: 'Plex Totaal Bandbreedte'

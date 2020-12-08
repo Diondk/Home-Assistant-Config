@@ -1,0 +1,37 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/more_page.html
+
+# more_page:
+#   addons:
+#     - name: Hello more page
+#       icon: fas:chart-area
+#       path: 'dwains-dashboard/addons/more_page/hello-more-page/page.yaml'
+#       data:
+#         some_data: 'This is some data parsed.'
+#         some_other_data: 'and some other data.'
+more_page:
+    addons:
+      - name: Afvalwijzer
+        icon: fas:recycle
+        path: 'dwains-dashboard/addons/more_page/afvalwijzer/page.yaml'
+      - name: AdGuard
+        icon: fas:ad
+        path: 'dwains-dashboard/addons/more_page/adguard/page.yaml'
+      - name: P2000
+        icon: fas:ambulance
+        path: 'dwains-dashboard/addons/more_page/p2000/page.yaml'
+      - name: Coronavirus
+        icon: fas:disease
+        path: 'dwains-dashboard/addons/more_page/coronavirus/page.yaml'
+      - name: Power Usage
+        icon: fas:tachometer-alt
+        path: 'dwains-dashboard/addons/more_page/power_usage/page.yaml'
+      - name: Creality Ender 3
+        icon: 'mdi:printer-3d'
+        path: 'dwains-dashboard/addons/more_page/creality_ender/ender3.yaml'
+      - name: Ubiquiti UniFi
+        icon: 'mdi:router-network'
+        path: 'dwains-dashboard/addons/more_page/ubiquiti/unifi.yaml'
+      - name: Plex
+        icon: fas:server
+        path: 'dwains-dashboard/addons/more_page/plex/page.yaml'
+        

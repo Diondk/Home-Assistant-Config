@@ -19,7 +19,7 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.homemode_home
   - service: switch.turn_on
-    entity_id: switch.camera_plug
+    entity_id: switch.woonkamer_state
 #both gone, close rollers
 - alias: COVER - Away automation
   trigger: 
@@ -53,8 +53,7 @@
   - service: input_boolean.turn_on
     entity_id: input_boolean.homemode_home
   - service: switch.turn_off
-    entity_id: switch.camera_plug
-  - service: shell_command.cast_ha_woonkamer
+    entity_id: switch.woonkamer_state
 #Luke sleeping enable the automation when boolean is turned on.
 - id: '1561884137840'
   alias: Homemode - Luke slaapt
@@ -136,3 +135,13 @@
   - data:
       message: request_location_update
     service: notify.mobile_app_lievemandie
+- alias: Homemode - Guest auto enabled
+  trigger:
+  - entity_id: person.mandie
+    from: home
+    platform: state
+    to: not_home  
+  action: 
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.homemode_guest
+

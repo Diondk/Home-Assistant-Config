@@ -8,7 +8,7 @@
 - alias: "Climate: turn on the heating 30 min before waking up"
   trigger:
     platform: time
-    at: "06:30"
+    at: "06:30:00"
   condition:
     condition: state
     entity_id:
@@ -46,7 +46,7 @@
 - alias: "Climate: turn off the heating at 22:00"
   trigger:
     platform: time
-    at: "22:00"
+    at: "22:00:00"
   condition:
     - condition: state
       entity_id: input_boolean.automatic_temperature
@@ -73,3 +73,69 @@
       actionName: TURN_ON_HEATING
   action:
     service: script.set_high_temperature        
+    
+- alias: "Climate: Turn off heating on weekdays when Mandie is gone and Dion is working from home"
+  trigger:
+    - entity_id: person.mandie
+      from: home
+      platform: state
+      to: not_home  
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - thu
+    - condition: time
+      after: "08:30:00"    
+      before: "15:00:00"
+    - condition: state
+      entity_id: person.dion
+      state: home
+  action: 
+  - service: climate.set_temperature
+    entity_id: climate.woonkamer
+    data:
+      temperature: "17"
+  - service: climate.set_temperature
+    entity_id: climate.eetkamer
+    data:
+      temperature: "17"
+  - service: climate.set_temperature
+    entity_id: climate.lukes_kamer
+    data:
+      temperature: "17"
+  - service: climate.set_temperature
+    entity_id: climate.slaapkamer
+    data:
+     temperature: "17"
+  - service: climate.set_temperature
+    entity_id: climate.gang
+    data:
+      temperature: "20"
+  - service: climate.set_temperature
+    entity_id: climate.douche
+    data:
+      temperature: "17"      
+  - service: climate.set_temperature
+    entity_id: climate.kantoor
+    data:
+     temperature: "20"
+
+- alias: "Climate: Pre heat Luke's bedroom"
+  trigger: 
+    - platform: time
+      at: "18:45:00"
+  condition:
+    - condition: state
+      entity_id: group.family_status
+      state: home
+  action: 
+    - service: climate.set_temperature
+      entity_id: climate.lukes_kamer
+      data:
+        temperature: 20
+    - service: notify.all_iphones
+      data:
+        title: "Climate"
+        message: "Preheating Luke's bedroom to 20℃"  

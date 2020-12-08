@@ -5,6 +5,7 @@
      icon: fas:couch
      light: group.woonkamer_verlichting
      motion: binary_sensor.woonkamer_sensor_motion
+     window: binary_sensor.window_livingroom
      temperature: sensor.woonkamer_sensor_temperature
      media_player: media_player.55pus8503_12
      climate: climate.heating
@@ -17,7 +18,7 @@
          data:
            platform: sonos
            speakers:
-             - entity: media_player.woonkamer
+             - entity: media_player.beam
                name: Woonkamer
              - entity: media_player.kantoor
                name: Kantoor
@@ -77,6 +78,7 @@
      icon: fas:baby
      light: light.luke_ventilator
      motion: binary_sensor.lukes_kamer_sensor_motion
+     door: binary_sensor.door_luke
      temperature: sensor.lukes_kamer_sensor_temperature
      addons:
        - name: Fan Control
@@ -107,6 +109,7 @@
      light: light.kantoor_group
      temperature: sensor.kantoor_temperature
      motion: binary_sensor.kantoor_sensor_motion
+     safety: binary_sensor.smoke_office
      addons:
        - name: Printer
          icon: fas:print
@@ -123,7 +126,7 @@
            speakers:
              - entity: media_player.kantoor
                name: Kantoor
-             - entity: media_player.woonkamer
+             - entity: media_player.beam
                name: Woonkamer
            buttons:
              - name: Radio 538

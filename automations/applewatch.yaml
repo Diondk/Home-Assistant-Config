@@ -6,19 +6,19 @@
 #  \__,_| .__/| .__/|_|\___|___\_/\_/ \__,_|\__\___|_| |_|
 #       |_|   |_|         |_____|
 #
-- alias: "Apple Watch: Play or Pause the TV"
-  trigger:
-    platform: event
-    event_type: ios.action_fired
-    event_data:
-      actionName: Play TV
-  condition:
-    condition: state
-    entity_id: media_player.55pus8503_12
-    state: "on"
-  action:
-    service: media_player.media_play_pause
-    entity_id: media_player.55pus8503_12
+#- alias: "Apple Watch: Play or Pause the TV"
+#  trigger:
+#    platform: event
+#    event_type: ios.action_fired
+#    event_data:
+#      actionName: Play TV
+#  condition:
+#    condition: state
+#    entity_id: media_player.55pus8503_12
+#    state: "on"
+#  action:
+#    service: media_player.media_play_pause
+#    entity_id: media_player.55pus8503_12
 
 - alias: "Apple Watch: One person goes to sleep"
   trigger:
@@ -52,7 +52,7 @@
       actionName: Rolluiken Sluiten
   condition:
     condition: state
-    entity_id: binary_sensor.keuken_sensor_motion
+    entity_id: binary_sensor.door_keuken
     state: "off"      
   action:
     service: cover.close_cover
@@ -60,8 +60,83 @@
       entity_id: 
         - cover.eetkamerraam    
         - cover.keukendeur
-            
-    
+- alias: "Apple Watch: temperature report"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+     actionName: Temperature report
+  action:
+    - variables:
+        iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
+    - service: "{{ iphone }}"
+      data:
+        title: "Temperature"
+        message: >
+          Bedroom: {{ states('sensor.slaapkamer_sensor_temperature') }}°C
+          Living room: {{ states('sensor.woonkamer_sensor_temperature') }}°C
+          Hall: {{ states('sensor.gang_sensor_temperature') }}°C
+          Thermostat: {{ state_attr('climate.heating', 'temperature') }}°C
+          Outside: {{ state_attr('weather.huis', 'temperature') }}°C and it's {{ states('weather.huis') }}            
+
+- alias: "Apple Watch: Set cover"
+  mode: parallel
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Set Cover
+  action:
+    - variables:
+        iphone: "notify.mobile_app_{{ trigger.event.data.sourceDeviceName.replace('-', '_') }}"
+    - service: "{{ iphone }}"
+      data:
+        message: "Apple Watch: Set Cover"
+        data:
+          push:
+            category: set_cover
+    - wait_for_trigger:
+        platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          categoryName: set_cover
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - variables:
+        cover: >
+          {{
+            {'ALL': 'all',
+             'KEUKEN': 'cover.keukendeur',
+             'EETKAMER': 'cover.eetkamerraam',
+            }[wait.trigger.event.data.actionName] }}
+    - service: "{{ iphone }}"
+      data:
+        message: "Apple Watch: choose option"
+        data:
+          push:
+            category: cover_options
+    - wait_for_trigger:
+        platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          categoryName: cover_options
+      timeout: "00:00:20"
+      continue_on_timeout: false
+    - variables:
+        option: "{{ wait.trigger.event.data.actionName }}"
+    - choose:
+        - conditions: "{{ option == 'CLOSE' }}"
+          sequence:
+            service: cover.close_cover
+            data:
+              entity_id: "{{ cover }}"
+        - conditions: "{{ option == 'OPEN' }}"
+          sequence:
+            service: cover.open_cover
+            data:
+              entity_id: "{{ cover }}"
+
 
 
       

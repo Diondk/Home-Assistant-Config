@@ -7,6 +7,9 @@
 #                                                                 
 #                                                                 
 
+  - platform: zoneminder
+    command_on: Mocord
+    command_off: Monitor
 
   - platform: mqtt
     name: "Televisie kast"
@@ -14,32 +17,40 @@
     command_topic: "cmnd/sonoff-tv/POWER"
     payload_on: "ON"
     payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     qos: 1
-    retain: false
+    retain: true
   - platform: mqtt
     name: "Droger"
     state_topic: "stat/sonoff-dr/POWER"  
     command_topic: "cmnd/sonoff-dr/POWER"
     payload_on: "ON"
     payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     qos: 1
-    retain: false
+    retain: true
   - platform: mqtt
     name: "Wasmachine"
     state_topic: "stat/sonoff-wm/POWER"
     command_topic: "cmnd/sonoff-wm/POWER"
     payload_on: "ON"
     payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     qos: 1
-    retain: false
+    retain: true
   - platform: mqtt
     name: "Washing_machine"
     state_topic: "stat/sonoff-wm/POWER"  
     command_topic: "cmnd/sonoff-wm/POWER"
     payload_on: "ON"
     payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     qos: 1
-    retain: false
+    retain: true
     json_attributes_topic: "tele/sonoff-wm/SENSOR"
     json_attributes_template: "{{ value_json['ENERGY'] | tojson }}"    
   - platform: mqtt
@@ -48,8 +59,10 @@
     command_topic: "cmnd/sonoff-dr/POWER"
     payload_on: "ON"
     payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
     qos: 1
-    retain: false
+    retain: true
     json_attributes_topic: "tele/sonoff-dr/SENSOR"
     json_attributes_template: "{{ value_json['ENERGY'] | tojson }}"     
   - platform: command_line

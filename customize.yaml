@@ -1,8 +1,8 @@
 #customize
-  binary_sensor.achtertuin_sensor_motion:
+  binary_sensor.motion_backgarden:
     icon: 'mdi:motion-sensor'
     friendly_name: Achtertuin beweging
-  binary_sensor.douche_sensor_motion:
+  binary_sensor.motion_bathroom:
     icon: 'mdi:motion-sensor'
     friendly_name: Douche beweging
   binary_sensor.front_door_ding:
@@ -11,34 +11,37 @@
   binary_sensor.front_door_motion:
     icon: 'mdi:motion-sensor'
     friendly_name: Voordeur beweging
-  binary_sensor.keuken_sensor_motion:
+  binary_sensor.motion_kitchen:
     icon: 'mdi:motion-sensor'
     friendly_name: Keuken beweging
-  binary_sensor.gang_sensor_motion:
+  binary_sensor.motion_hallway:
     icon: 'mdi:motion-sensor'
     friendly_name: Gang beweging
-  binary_sensor.lukes_kamer_sensor_motion:
+  binary_sensor.motion_lukesroom:
     icon: 'mdi:motion-sensor'
     friendly_name: Lukes Kamer beweging
-  binary_sensor.oprit_sensor_motion:
+  binary_sensor.motion_driveway:
     icon: 'mdi:motion-sensor'
     friendly_name: Oprit beweging
-  binary_sensor.overloop_sensor_motion:
+  binary_sensor.motion_corridor:
     icon: 'mdi:motion-sensor'
     friendly_name: Overloop beweging
-  binary_sensor.slaapkamer_sensor_motion:
+  binary_sensor.motion_bedroom:
     icon: 'mdi:motion-sensor'
     friendly_name: Slaapkamer beweging
-  binary_sensor.wc_sensor_motion:
+  binary_sensor.motion_toilet:
     icon: 'mdi:motion-sensor'
     friendly_name: WC beweging
-  binary_sensor.woonkamer_sensor_motion:
+  binary_sensor.motion_livingroom:
     icon: 'mdi:motion-sensor'
     friendly_name: Woonkamer beweging
   switch.droger:
     icon: mdi:tumble-dryer
   switch.wasmachine:
     icon: mdi:washing-machine
+  switch.televisie_kast:
+    icon: 'mdi:television'
+    name: TV Kast
   switch.comfo_fan_0:
     icon: 'mdi:fan'
     friendly_name: ComfoFan Stand 2
@@ -81,3 +84,18 @@
   sensor.woonkamer_sensor_temperature:
     icon: 'fas:thermometer-three-quarters'
     friendly_name: Woonkamer
+#power sensors
+  sensor.wasmachine_power:
+    name: Wasmachine Huidig Verbruik
+    icon: mdi:washing-machine
+  sensor.droger_power:
+    name: Droger Huidig Verbruik
+    icon: mdi:tumble-dryer
+  sensor.tv_power:
+    name: TV Meubel Huidig Verbruik
+    icon: 'mdi:television'
+  sensor.server_plug_huidig_verbruik:
+    name: Server Huidig Verbruik
+  sensor.afzuigkap_huidig_verbruik:
+    name: Afzuigkap Huidig Verbruik
+    icon: mdi:hvac

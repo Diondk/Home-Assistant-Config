@@ -3,5 +3,5 @@ home:
     - work
   devices:
     - device_tracker.lievemandie
-    - device_tracker.prive
+    - device_tracker.iphone
   tolerance: 50

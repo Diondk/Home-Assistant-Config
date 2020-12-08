@@ -1,0 +1,366 @@
+# dwains_theme
+
+# Statistieken
+- type: horizontal-stack
+  cards:
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background-color: var(--dwains-dashboard-primary);
+        }
+      entities:
+        - sensor.plex_totalbandwidth
+      name: Plex activiteit
+      line_color: 'var(--dwains-dashboard-accent)'
+      hours_to_show: 72
+      hour24: true
+      points_per_hour: 1
+      smoothing: false
+      show:
+        points: false
+        graph: line
+      #   extrema: false
+
+# Plex
+- type: custom:stack-in-card
+  mode: vertical
+  cards:
+    - type: custom:dwains-flexbox-card
+      items_classes: 'col-xs-12 col-sm-12 col-md-12 col-lg-12'
+      cards:
+        - type: custom:dwains-flexbox-card
+          items_classes: "col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          cards:
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Huidige gebruikers"
+                sensor: "sensor.plex_current_users"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Top gebruiker"
+                sensor: "sensor.plex_topuser"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Meest bekeken film"
+                icon: mdi:plex
+                sensor: "sensor.plex_topmovie"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Meest bekeken serie"
+                sensor: "sensor.plex_toptvshow"
+        - type: custom:dwains-flexbox-card
+          items_classes: "col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          cards:
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Films in Plex"
+                sensor: "sensor.plex_movie_counter"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Series in Plex"
+                sensor: "sensor.plex_series_counter"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Seizoenen in Plex"
+                sensor: "sensor.plex_season_counter"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Afleveringen in Plex"
+                sensor: "sensor.plex_episode_counter"
+    - type: custom:dwains-flexbox-card
+      item_classes: 'col-xs-12 col-sm-12 col-md-12 col-lg-12'
+      cards:
+        - type: custom:auto-entities
+          filter:
+            exclude:
+              - entity_id: sensor.lovelace_plex_recent_movies_*
+            include:
+              - entity_id: sensor.lovelace_plex_recent_tv_*
+                attributes:
+                  name: "! "
+                options:
+                  type: custom:button-card
+                  show_state: true
+                  show_label: true
+                  show_name: true
+                  show_icon: true
+                  name: "[[[ return entity.attributes.name ]]]"
+                  entity_picture: >
+                    [[[
+                      if (entity.attributes.poster == '')
+                        return 'https://via.placeholder.com/340x500?text=No%20Poster%20Available';
+                      else
+                        return entity.attributes.poster;
+                    ]]]
+                  show_entity_picture: true
+                  # entity: this.entity_id
+                  layout: vertical
+                  custom_fields:
+                    date: >
+                      [[[ return entity.attributes.date ]]]
+                    episode: >
+                      [[[ return entity.attributes.episode + ' (' + entity.attributes.number + ')' ]]]
+                  styles:
+                    grid:
+                      - grid-template-areas: '"i" "n" "date" "episode"'
+                      - grid-template-columns: 100%
+                      - grid-template-rows: 1fr min-content min-content min-content
+                    card:
+                      - background-color: var(--dwains-dashboard-primary)
+                      - opacity: >
+                          [[[
+                            if (entity.attributes.watched == "False") return '0.5';
+                            else return '1';
+                          ]]]
+                      - border-radius: 0
+                      - box-shadow: none
+                    name:
+                      - font-size: 15px
+                      - font-weight: bold
+                      - color: var(--dwains-dashboard-names)
+                    custom_fields:
+                      episode:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                      date:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                    icon:
+                      - color: var(--dwains-dashboard-accent)
+          sort:
+            method: name
+            ignore_case: true
+          card:
+            type: custom:dwains-flexbox-card
+            items_classes: "col-xs-6 col-sm-6 col-md-3 col-lg-2"
+    - type: custom:dwains-flexbox-card
+      item_classes: 'col-xs-12 col-sm-12 col-md-12 col-lg-12'
+      cards:
+        - type: custom:auto-entities
+          filter:
+            include:
+              - entity_id: sensor.lovelace_plex_recent_movies_*
+                attributes:
+                  name: "! "
+                options:
+                  type: custom:button-card
+                  show_state: true
+                  show_label: true
+                  show_name: true
+                  show_icon: true
+                  name: "[[[ return entity.attributes.name ]]]"
+                  entity_picture: >
+                    [[[
+                      if (entity.attributes.poster == '')
+                        return 'https://via.placeholder.com/340x500?text=No%20Poster%20Available';
+                      else
+                        return entity.attributes.poster;
+                    ]]]
+                  show_entity_picture: true
+                  # entity: this.entity_id
+                  layout: vertical
+                  custom_fields:
+                    date: >
+                      [[[ return entity.attributes.date ]]]
+                  styles:
+                    grid:
+                      - grid-template-areas: '"i" "n" "date"'
+                      - grid-template-columns: 100%
+                      - grid-template-rows: 1fr min-content min-content min-content
+                    card:
+                      - background-color: var(--dwains-dashboard-primary)
+                      - opacity: >
+                          [[[
+                            if (entity.attributes.watched == "False") return '0.5';
+                            else return '1';
+                          ]]]
+                      - border-radius: 0
+                      - box-shadow: none
+                    name:
+                      - font-size: 15px
+                      - font-weight: bold
+                      - color: var(--dwains-dashboard-names)
+                    custom_fields:
+                      episode:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                      date:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                    icon:
+                      - color: var(--dwains-dashboard-accent)
+          sort:
+            method: name
+            ignore_case: true
+          card:
+            type: custom:dwains-flexbox-card
+            items_classes: "col-xs-6 col-sm-6 col-md-3 col-lg-2"
+
+# Media
+- type: custom:stack-in-card
+  mode: vertical
+  cards:
+    - type: custom:dwains-flexbox-card
+      items_classes: 'col-xs-12 col-sm-12 col-md-12 col-lg-12'
+      cards:
+        - type: custom:dwains-flexbox-card
+          items_classes: "col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          cards:
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Series"
+                sensor: "sensor.sonarr_shows"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Komende afleveringen"
+                sensor: "sensor.sonarr_upcoming"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Missende afleveringen"
+                sensor: "sensor.sonarr_wanted"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Afleveringen in wachtrij"
+                sensor: "sensor.sonarr_queue"
+        - type: custom:dwains-flexbox-card
+          items_classes: "col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          cards:
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Films"
+                sensor: "sensor.radarr_movies"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Komende films"
+                sensor: "sensor.radarr_upcoming"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Sonarr cli wachtrij"
+                sensor: "sensor.sonarr_commands"
+            - !include
+              - ../../templates/button_state.yaml
+              - name: "Radarr cli wachtrij"
+                sensor: "sensor.radarr_commands"
+    - type: custom:dwains-flexbox-card
+      item_classes: 'col-xs-12 col-sm-12 col-md-12 col-lg-12'
+      cards:
+        - type: custom:auto-entities
+          filter:
+            include:
+              - entity_id: sensor.lovelace_sonarr_upcoming_*
+                attributes:
+                  name: "! "
+                options:
+                  type: custom:button-card
+                  show_state: true
+                  show_label: true
+                  show_name: true
+                  show_icon: true
+                  name: "[[[ return entity.attributes.name ]]]"
+                  entity_picture: >
+                    [[[
+                      if (entity.attributes.poster == 'None')
+                        return 'https://via.placeholder.com/340x500?text=No%20Poster%20Available';
+                      else
+                        return entity.attributes.poster;
+                    ]]]
+                  show_entity_picture: true
+                  # entity: this.entity_id
+                  layout: vertical
+                  custom_fields:
+                    date: >
+                      [[[ return entity.attributes.date ]]]
+                    episode: >
+                      [[[ return entity.attributes.episode + ' (' + entity.attributes.number + ')' ]]]
+                  styles:
+                    grid:
+                      - grid-template-areas: '"i" "n" "date" "episode"'
+                      - grid-template-columns: 100%
+                      - grid-template-rows: 1fr min-content min-content min-content
+                    card:
+                      - background-color: >
+                          [[[
+                            if (entity.attributes.onairtoday == "True") return 'var(--dwains-dashboard-accent)';
+                            else return 'var(--dwains-dashboard-primary)';
+                          ]]]
+                      - opacity: >
+                          [[[
+                            if (entity.attributes.downloaded == "True") return '0.5';
+                            else return '1';
+                          ]]]
+                      - border-radius: 0
+                      - box-shadow: none
+                    name:
+                      - font-size: 15px
+                      - font-weight: bold
+                      - color: var(--dwains-dashboard-names)
+                    custom_fields:
+                      episode:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                      date:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                    icon:
+                      - color: var(--dwains-dashboard-accent)
+          sort:
+            method: name
+            ignore_case: true
+          card:
+            type: custom:dwains-flexbox-card
+            items_classes: "col-xs-6 col-sm-6 col-md-3 col-lg-2"
+            
+    - type: custom:dwains-flexbox-card
+      item_classes: 'col-xs-12 col-sm-12 col-md-12 col-lg-12'
+      cards:
+        - type: custom:auto-entities
+          filter:
+            include:
+              - entity_id: sensor.lovelace_radarr_upcoming_*
+                attributes:
+                  name: "! "
+                options:
+                  type: custom:button-card
+                  show_state: true
+                  show_label: true
+                  show_name: true
+                  show_icon: true
+                  name: "[[[ return entity.attributes.name ]]]"
+                  entity_picture: >
+                    [[[
+                      if (entity.attributes.poster == 'None')
+                        return 'https://via.placeholder.com/340x500?text=No%20Poster%20Available';
+                      else
+                        return entity.attributes.poster;
+                    ]]]
+                  show_entity_picture: true
+                  # entity: this.entity_id
+                  layout: vertical
+                  custom_fields:
+                    date: >
+                      [[[ return entity.attributes.date ]]]
+                  styles:
+                    grid:
+                      - grid-template-areas: '"i" "n" "date"'
+                      - grid-template-columns: 100%
+                      - grid-template-rows: 1fr min-content min-content min-content
+                    card:
+                      - background-color: var(--dwains-dashboard-primary)
+                      - border-radius: 0
+                      - box-shadow: none
+                    name:
+                      - font-size: 15px
+                      - font-weight: bold
+                      - color: var(--dwains-dashboard-names)
+                    custom_fields:
+                      date:
+                        - font-size: 13px
+                        - color: var(--dwains-dashboard-names)
+                    icon:
+                      - color: var(--dwains-dashboard-accent)
+          sort:
+            method: name
+            ignore_case: true
+          card:
+            type: custom:dwains-flexbox-card
+            items_classes: "col-xs-6 col-sm-6 col-md-3 col-lg-2"

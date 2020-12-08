@@ -16,15 +16,31 @@ push:
           activationMode: background
           authenticationRequired: true
           destructive: true
+    - name: Set Cover
+      identifier: set_cover
+      actions:
+        - identifier: ALL
+          title: All
+        - identifier: KEUKEN
+          title: Keuken
+        - identifier: EETKAMER
+          title: Eetkamer
+    - name: Cover options
+      identifier: cover_options
+      actions:
+        - identifier: "CLOSE"
+          title: "Close"
+        - identifier: "OPEN"
+          title: "Open"
 actions:
-  - name: Play TV
-    background_color: "#000000"
-    label:
-      text: "Play/pause TV"
-      color: "#ff0000"
-    icon:
-      icon: play-pause
-      color: "#ffffff"
+#  - name: Play TV
+#    background_color: "#000000"
+#    label:
+#      text: "Play/pause TV"
+#      color: "#ff0000"
+#    icon:
+#      icon: play-pause
+#      color: "#ffffff"
   - name: Half sleep mode
     background_color: "#000000"
     label:
@@ -49,4 +65,19 @@ actions:
     icon:
       icon: mdi:window-shutter
       color: "#ffffff"      
-      
+  - name: Temperature report
+    background_color: "#000000"
+    label:
+      text: Report
+      color: "#ff0000"
+    icon:
+      icon: temperature-celsius
+      color: "#ffffff"
+  - name: Set Cover
+    background_color: "#000000"
+    label:
+      text: Set Cover
+      color: "#ff0000"
+    icon:
+      icon: mdi:window-shutter
+      color: "#ffffff"

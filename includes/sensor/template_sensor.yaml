@@ -18,11 +18,11 @@
         Youtube
         {% elif is_state_attr('media_player.tv', 'media_title', 'Plex') %} 
         Plex   
-        {% elif is_state('media_player.woonkamer_room_xbox_one', 'on') %}
+        {% elif is_state('media_player.xboxone', 'on') %}
         Xbox 
-        {% elif is_state ('media_player.tv','mediatitle', 'N/A - N/A') %}
+        {% elif is_state_attr('media_player.tv','mediatitle', 'N/A - N/A') %}
         TV
-        {% elif is_state_attr('media_player.tv', 'off') %} 
+        {% elif is_state('media_player.tv', 'unavailable') %} 
         off
         {% else %} off {% endif %}
       friendly_name: 'TV Status'
@@ -79,3 +79,47 @@
         {% else %}
           notify.mobile_app_lievemandie
         {% endif %}
+- platform: template
+  sensors:
+    current_lights_on: 
+      friendly_name: 'Lichten momenteel aan'
+      unit_of_measurement: 'Aan'
+      value_template: >
+       {% set lights = [
+        states.light.hue_go_woonkamer,
+        states.light.woonkamer_color_floor,
+        states.light.keuken_spot_1,
+        states.light.keuken_spot_2,
+        states.light.keuken_spot_3,
+        states.light.eetkamer_edison_1,
+        states.light.eetkamer_filament_groot_1,
+        states.light.eetkamer_edison_2,
+        states.light.eetkamer_filament_groot_2,
+        states.light.wc_spot,
+        states.light.gang_lamp,
+        states.light.overloop_lamp,
+        states.light.douche,
+        states.light.kantoor,
+        states.light.lightstrip_kantoor,
+        states.light.douche,
+        states.light.slaapkamer,
+        states.light.mandie_nachtkastje,
+        states.light.dion_nachtkastje,
+        states.light.luke_ventilator,
+        states.light.luke_nachtlampje,
+       ]%}
+       {{ lights | selectattr('state','eq','on') | list | count }}
+- platform: template
+  sensors:
+    current_mediaplayers_on:
+      friendly_name: 'Mediaspeler momentaal aan'
+      unit_of_measurement: 'Aan'
+      value_template: >
+       {% set media_players = [
+        states.media_player.kantoor,
+        states.media_player.nesthub8796,
+        states.media_player.tv,
+        states.media_player.sonos_woonkamer,
+       ]%}
+       {{ media_players | selectattr('state','eq','playing') | list | count }}
+   

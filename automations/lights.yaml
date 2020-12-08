@@ -127,3 +127,31 @@
           {% else %}
             "Lights: Both Driveway and Back Yard are still on"
           {% endif %}
+
+- alias: "Lights: If Luke's door is open and time after 07:30 kill the lights"
+  trigger: 
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+  - condition: time
+    after: "07:30:00"
+  - condition: state
+    entity_id: binary_sensor.door_luke
+    state: "on"
+  - condition: or
+    conditions: 
+      - condition: state
+        entity_id: light.luke_nachtlamp
+        state: 'on'
+      - condition: state
+        entity_id: light.luke_ventilator
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: 
+        - light.luke_nachtlamp
+        - light.luke_ventilator
+    - service: notify.mobile_app_iphone
+      data:
+        title: "Lights: Luke turned off"
+        message: "Lights in Lukes room turned off"

@@ -10,3 +10,4 @@
   name: Ender3
   still_image_url: !secret ender3_cam_snapshot
   mjpeg_url: !secret ender3_cam_stream
+- platform: zoneminder

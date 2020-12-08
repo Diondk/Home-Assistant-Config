@@ -1,0 +1,34 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/scenes.html
+
+scenes:
+  entities:
+    - entity: input_boolean.homemode_home
+      icon: fas:house
+    - entity: input_boolean.homemode_away
+      icon: fas:house-leave
+    - entity: input_boolean.homemode_douche
+      icon: fas:shower
+    - entity: input_boolean.homemode_luke
+      icon: fas:baby
+    - entity: input_boolean.homemode_night
+      icon: fas:moon-stars
+    - entity: input_boolean.homemode_guest
+      icon: fas:user-friends
+    - entity: input_boolean.homemode_vacation
+      icon: fas:house-leave
+    - entity: input_boolean.cover_auto
+      icon: fas:blinds
+    - entity: input_boolean.cover_handmatig_open
+      icon: fas:blinds-open
+    - entity: input_boolean.cover_gesloten_zon
+      icon: fas:blinds-closed
+    - entity: input_boolean.bedroom_lights_automatically_turned_on
+      icon: mdi:ceiling-light
+    - entity: input_boolean.automatic_bedroom_lights
+      icon: mdi:lamp
+    - entity: input_boolean.automatic_temperature
+      icon: mdi:thermometer
+    - entity:  input_boolean.work_hour_notification_sent
+      icon: mdi:lamp
+    - entity: input_boolean.alarm_clock
+      icon: mdi:alarm

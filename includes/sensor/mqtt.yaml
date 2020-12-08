@@ -15,9 +15,10 @@
   value_template: "{{ value_json['ENERGY'].Current }}"
 - platform: mqtt
   name: TV Power
-  unit_of_measurement: "Watts"
+  unit_of_measurement: "W"
   state_topic: "tele/sonoff-tv/SENSOR"
   value_template: "{{ value_json['ENERGY'].Power }}"
+
 
 - platform: mqtt
   name: Droger Verbruik Gisteren
@@ -55,12 +56,12 @@
   
 - platform: mqtt
   name: Wasmachine Power
-  unit_of_measurement: "Watts"
+  unit_of_measurement: "W"
   state_topic: "tele/sonoff-wm/SENSOR"
   value_template: "{{ value_json['ENERGY'].Power }}"
   
 - platform: mqtt
   name: Droger Power
-  unit_of_measurement: "Watts"
+  unit_of_measurement: "W"
   state_topic: "tele/sonoff-dr/SENSOR"
   value_template: "{{ value_json['ENERGY'].Power }}"

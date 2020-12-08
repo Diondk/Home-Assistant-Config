@@ -14,7 +14,7 @@
     for: "00:30:00"
   condition: 
     condition: state
-    entity_id: binary_sensor.no_one_home
+    entity_id: input_boolean.homemode_away
     state: "on"
   action: 
     service: notify.all_iphones
